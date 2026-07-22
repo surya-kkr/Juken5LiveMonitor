@@ -9,6 +9,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import android.content.Context
+import com.kkr.juken5livemonitor.location.GPSSpeedProvider
 
 class MonitorViewModel : ViewModel() {
 
@@ -27,6 +29,7 @@ class MonitorViewModel : ViewModel() {
         _status.asStateFlow()
 
     private var monitoring = false
+    private var gpsProvider: GPSSpeedProvider? = null
 
     fun startMonitor() {
 
@@ -55,7 +58,9 @@ class MonitorViewModel : ViewModel() {
 
             repository.setLiveListener { data ->
 
-                _liveData.value = data
+                _liveData.value = data.copy(
+                    speed = _liveData.value.speed
+                )
 
             }
 
@@ -70,12 +75,31 @@ class MonitorViewModel : ViewModel() {
         }
 
     }
+    fun startGPS(context: Context) {
 
+        if (gpsProvider == null) {
+            gpsProvider = GPSSpeedProvider(context)
+        }
+
+        gpsProvider?.start { speed ->
+
+            _liveData.value = _liveData.value.copy(
+                speed = speed
+            )
+
+        }
+
+    }
+    fun stopGPS() {
+        gpsProvider?.stop()
+    }
     fun disconnect() {
 
         monitoring = false
 
         _status.value = "Disconnected"
+
+        stopGPS()
 
         repository.disconnect()
 

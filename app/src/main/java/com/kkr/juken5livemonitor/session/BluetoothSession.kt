@@ -19,5 +19,4 @@ object BluetoothSession {
         bluetoothManager?.disconnect()
         bluetoothManager = null
     }
-
 }

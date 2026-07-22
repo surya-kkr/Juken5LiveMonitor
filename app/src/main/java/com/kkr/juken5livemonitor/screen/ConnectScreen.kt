@@ -2,20 +2,42 @@ package com.kkr.juken5livemonitor.screen
 
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothDevice
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Bluetooth
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.kkr.juken5livemonitor.bluetooth.BluetoothManager
 import com.kkr.juken5livemonitor.bluetooth.BluetoothScanner
 import com.kkr.juken5livemonitor.session.BluetoothSession
-import kotlinx.coroutines.*
+import com.kkr.juken5livemonitor.ui.components.GlassBackground
+import com.kkr.juken5livemonitor.ui.components.GlassButton
+import com.kkr.juken5livemonitor.ui.components.GlassCard
+import com.kkr.juken5livemonitor.ui.components.GlassTopBar
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import androidx.compose.material.icons.rounded.Refresh
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import android.content.res.Configuration
+import androidx.compose.ui.platform.LocalConfiguration
 
 @SuppressLint("MissingPermission")
 @Composable
@@ -33,8 +55,8 @@ fun ConnectScreen(
         BluetoothManager()
     }
 
-    val devices by remember {
-        mutableStateOf(scanner.getPairedDevices())
+    var devices by remember {
+        mutableStateOf<List<BluetoothDevice>>(emptyList())
     }
 
     var connecting by remember {
@@ -42,74 +64,199 @@ fun ConnectScreen(
     }
 
     var status by remember {
-        mutableStateOf("Belum Terhubung")
+        mutableStateOf("Disconnected")
     }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
+    LaunchedEffect(Unit) {
+        devices = scanner.getPairedDevices()
+    }
+    val configuration = LocalConfiguration.current
+    val isLandscape =
+        configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 
-        Text(
-            text = "Juken 5 Live Monitor",
-            style = MaterialTheme.typography.headlineMedium
-        )
 
-        Spacer(modifier = Modifier.height(8.dp))
+    GlassBackground {
 
-        Text(
-            text = "Pilih ECU Bluetooth",
-            style = MaterialTheme.typography.titleMedium
-        )
+        if (isLandscape) {
 
-        Spacer(modifier = Modifier.height(20.dp))
+            LandscapeConnectContent(
+                devices = devices,
+                status = status,
+                onConnect = { device ->
 
-        if (devices.isEmpty()) {
+                    connecting = true
+                    status = "Connecting..."
 
-            Text("Tidak ada perangkat Bluetooth yang sudah dipair.")
+                    CoroutineScope(Dispatchers.IO).launch {
+
+                        val success = bluetoothManager.connect(device)
+
+                        withContext(Dispatchers.Main) {
+
+                            connecting = false
+
+                            if (success) {
+
+                                BluetoothSession.initialize(bluetoothManager)
+
+                                status = "Connected"
+
+                                navController.navigate("monitor")
+
+                            } else {
+
+                                status = "Failed to Connect"
+
+                            }
+
+                        }
+
+                    }
+
+                }
+            )
 
         } else {
 
-            LazyColumn(
-                modifier = Modifier.weight(1f)
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(20.dp)
             ) {
 
-                items(devices) { device ->
+                GlassTopBar(
+                    connected = status == "Connected",
+                    ecuName = "BRT Juken 5 by KKR"
+                )
 
-                    BluetoothDeviceCard(
-                        device = device,
+                Spacer(modifier = Modifier.height(24.dp))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.Bottom
+                ) {
+
+                    Column {
+
+                        Text(
+                            text = "Bluetooth Devices",
+                            style = MaterialTheme.typography.titleLarge,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.White
+                        )
+
+                        Spacer(modifier = Modifier.height(4.dp))
+
+                        Text(
+                            text = "${devices.size} Paired Device",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = Color.Gray
+                        )
+
+                    }
+
+                    IconButton(
                         enabled = !connecting,
-                        onConnect = {
+                        onClick = {
+                            devices = scanner.getPairedDevices()
+                        }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Rounded.Refresh,
+                            contentDescription = "Refresh",
+                            tint = Color(0xFFE53935)
+                        )
+                    }
 
-                            if (connecting) return@BluetoothDeviceCard
+                }
 
-                            connecting = true
-                            status = "Menghubungkan..."
+                Spacer(modifier = Modifier.height(18.dp))
+                if (devices.isEmpty()) {
 
-                            CoroutineScope(Dispatchers.IO).launch {
+                    GlassCard {
 
-                                val success =
-                                    bluetoothManager.connect(device)
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 20.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
 
-                                withContext(Dispatchers.Main) {
+                            Text(
+                                text = "Tidak ada perangkat Bluetooth yang dipair.",
+                                color = Color.White
+                            )
 
-                                    if (success) {
+                        }
 
-                                        BluetoothSession.initialize(
-                                            bluetoothManager
-                                        )
+                    }
 
-                                        status = "Terhubung"
+                } else {
 
-                                        navController.navigate("monitor") {
-                                            popUpTo("connect")
+                    LazyColumn(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(300.dp),
+                        verticalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+
+                        items(devices) { device ->
+
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(vertical = 8.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+
+                                Column(
+                                    modifier = Modifier.weight(1f)
+                                ) {
+
+                                    Text(
+                                        text = device.name ?: "Unknown",
+                                        color = Color.White
+                                    )
+
+                                    Text(
+                                        text = device.address,
+                                        color = Color.Gray
+                                    )
+
+                                }
+
+                                GlassButton(
+                                    text = "CONNECT",
+                                    modifier = Modifier.width(120.dp)
+                                ) {
+
+                                    connecting = true
+                                    status = "Connecting..."
+
+                                    CoroutineScope(Dispatchers.IO).launch {
+
+                                        val success = bluetoothManager.connect(device)
+
+                                        withContext(Dispatchers.Main) {
+
+                                            connecting = false
+
+                                            if (success) {
+
+                                                BluetoothSession.initialize(bluetoothManager)
+
+                                                status = "Connected"
+
+                                                navController.navigate("monitor")
+
+                                            } else {
+
+                                                status = "Failed to Connect"
+
+                                            }
+
                                         }
-
-                                    } else {
-
-                                        status = "Gagal Terhubung"
-                                        connecting = false
 
                                     }
 
@@ -118,99 +265,73 @@ fun ConnectScreen(
                             }
 
                         }
-                    )
 
+                    }
+
+                }
+
+                Spacer(modifier = Modifier.height(18.dp))
+
+                GlassCard(
+                    modifier = Modifier.wrapContentHeight()
+                ) {
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+
+                        Column {
+
+                            Text(
+                                text = "Connection Status",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = Color.Gray
+                            )
+
+                            Spacer(modifier = Modifier.height(2.dp))
+
+                            Text(
+                                text = status,
+                                style = MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.Bold,
+                                color = if (status == "Connected")
+                                    Color(0xFF00E676)
+                                else
+                                    Color.White
+                            )
+
+                        }
+
+                        Box(
+                            modifier = Modifier
+                                .size(14.dp)
+                                .clip(CircleShape)
+                                .background(
+                                    if (status == "Connected")
+                                        Color(0xFF00E676)
+                                    else
+                                        Color(0xFFE53935)
+                                )
+                        )
+
+                    }
+
+                }
+                Spacer(modifier = Modifier.height(20.dp))
+
+                GlassButton(
+                    text = "DEMO DASHBOARD",
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    navController.navigate("monitor_demo")
                 }
 
             }
 
-        }
+    } // else
 
-        Spacer(modifier = Modifier.height(16.dp))
+} // GlassBackground
 
-        if (connecting) {
-
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-
-                CircularProgressIndicator(
-                    modifier = Modifier.size(22.dp),
-                    strokeWidth = 2.dp
-                )
-
-                Spacer(modifier = Modifier.width(10.dp))
-
-                Text(status)
-
-            }
-
-        } else {
-
-            Text(
-                text = status,
-                style = MaterialTheme.typography.titleMedium
-            )
-
-        }
-
-    }
-
-}
-
-@Composable
-private fun BluetoothDeviceCard(
-    device: BluetoothDevice,
-    enabled: Boolean,
-    onConnect: () -> Unit
-) {
-
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 8.dp),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 4.dp
-        )
-    ) {
-
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp)
-        ) {
-
-            Text(
-                text = device.name ?: "Unknown Device",
-                style = MaterialTheme.typography.titleMedium
-            )
-
-            Spacer(modifier = Modifier.height(4.dp))
-
-            Text(
-                text = device.address,
-                style = MaterialTheme.typography.bodySmall
-            )
-
-            Spacer(modifier = Modifier.height(12.dp))
-
-            Button(
-                modifier = Modifier.fillMaxWidth(),
-                enabled = enabled,
-                onClick = onConnect
-            ) {
-
-                Text(
-                    if (enabled)
-                        "CONNECT"
-                    else
-                        "CONNECTING..."
-                )
-
-            }
-
-        }
-
-    }
-
-}
+} // ConnectScreen

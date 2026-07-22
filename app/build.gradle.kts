@@ -60,6 +60,9 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation("androidx.compose.animation:animation")
     implementation("androidx.compose.material:material-icons-extended")
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation("com.google.android.gms:play-services-location:21.3.0")
 
     testImplementation(libs.junit)
 

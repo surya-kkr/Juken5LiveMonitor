@@ -39,6 +39,14 @@ fun AppNavigation() {
             )
 
         }
+        composable("monitor_demo") {
+
+            MonitorScreen(
+                navController = navController,
+                demoMode = true
+            )
+
+        }
 
     }
 

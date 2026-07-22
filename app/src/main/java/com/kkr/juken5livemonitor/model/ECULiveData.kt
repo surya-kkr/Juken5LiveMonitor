@@ -24,6 +24,8 @@ data class ECULiveData(
 
     val map: Int = 0,
 
-    val iat: Double = 0.0
+    val iat: Double = 0.0,
+
+    val speed: Float = 0f
 
 )

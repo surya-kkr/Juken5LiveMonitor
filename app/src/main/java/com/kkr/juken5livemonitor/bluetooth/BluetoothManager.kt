@@ -39,6 +39,7 @@ class BluetoothManager {
     private var listener: ((String) -> Unit)? = null
 
     @SuppressLint("MissingPermission")
+
     fun connect(
         device: BluetoothDevice
     ): Boolean {
@@ -94,6 +95,7 @@ class BluetoothManager {
         return socket?.isConnected == true
 
     }
+
 
     fun send(
         command: String
@@ -276,6 +278,7 @@ class BluetoothManager {
         )
 
     }
+
 
     fun disconnect() {
 
