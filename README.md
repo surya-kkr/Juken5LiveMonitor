@@ -1,24 +1,4 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/surya-kkr/Juken5LiveMonitor/main/assets/banner.png" width="900">
-</p>
-
-<h1 align="center">
-Juken5LiveMonitor
-</h1>
-
-<p align="center">
-Realtime ECU Monitor for BRT Juken 5
-</p>
-
-# 🚀 Juken5LiveMonitor
-
-A modern Android application for monitoring live engine data from the **BRT Juken 5 ECU** via Bluetooth.
-
-> Built with Kotlin and Android Studio.
-
----
-
-## ✨ Features
+# ✨ Features
 
 - 📡 Bluetooth connection to BRT Juken 5 ECU
 - 📊 Real-time engine monitoring
@@ -35,7 +15,7 @@ A modern Android application for monitoring live engine data from the **BRT Juke
 
 ## 📱 Screenshots
 
-Coming Soon...
+v0.0.1
 
 ---
 
