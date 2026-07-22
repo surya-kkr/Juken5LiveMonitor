@@ -1,4 +1,4 @@
-package com.kkr.juken5livemonitor.screen
+package com.kkr.juken5livemonitor.screen.Connect
 
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothDevice
@@ -8,8 +8,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Bluetooth
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
@@ -19,7 +17,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.kkr.juken5livemonitor.bluetooth.BluetoothManager
@@ -37,6 +34,7 @@ import androidx.compose.material.icons.rounded.Refresh
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import android.content.res.Configuration
+import android.util.Log
 import androidx.compose.ui.platform.LocalConfiguration
 
 @SuppressLint("MissingPermission")
@@ -68,7 +66,19 @@ fun ConnectScreen(
     }
 
     LaunchedEffect(Unit) {
-        devices = scanner.getPairedDevices()
+
+        val list = scanner.getPairedDevices()
+
+        Log.d("BT_DEBUG", "Start = ${list.size}")
+
+        list.forEach {
+            Log.d(
+                "BT_DEBUG",
+                "${it.name} | ${it.address}"
+            )
+        }
+
+        devices = list
     }
     val configuration = LocalConfiguration.current
     val isLandscape =
@@ -101,7 +111,7 @@ fun ConnectScreen(
 
                                 status = "Connected"
 
-                                navController.navigate("monitor")
+                                navController.navigate("com/kkr/juken5livemonitor/screen/monitor")
 
                             } else {
 
@@ -159,7 +169,19 @@ fun ConnectScreen(
                     IconButton(
                         enabled = !connecting,
                         onClick = {
-                            devices = scanner.getPairedDevices()
+
+                            val list = scanner.getPairedDevices()
+
+                            Log.d("BT_DEBUG", "Refresh = ${list.size}")
+
+                            list.forEach {
+                                Log.d(
+                                    "BT_DEBUG",
+                                    "${it.name} | ${it.address}"
+                                )
+                            }
+
+                            devices = list
                         }
                     ) {
                         Icon(
@@ -248,7 +270,7 @@ fun ConnectScreen(
 
                                                 status = "Connected"
 
-                                                navController.navigate("monitor")
+                                                navController.navigate("com/kkr/juken5livemonitor/screen/monitor")
 
                                             } else {
 

@@ -21,11 +21,34 @@ class BluetoothScanner(private val context: Context) {
                 Manifest.permission.BLUETOOTH_CONNECT
             ) == PackageManager.PERMISSION_GRANTED
 
+            android.util.Log.d(
+                "BT_PERMISSION",
+                "Granted = $granted"
+            )
+            android.util.Log.d(
+                "BT_PERMISSION",
+                "SDK = ${Build.VERSION.SDK_INT}"
+            )
             if (!granted) {
                 return emptyList()
             }
         }
 
-        return adapter?.bondedDevices?.toList() ?: emptyList()
+        android.util.Log.d("BT_DEBUG", "Adapter = $adapter")
+        android.util.Log.d("BT_DEBUG", "Enabled = ${adapter?.isEnabled}")
+        android.util.Log.d("BT_DEBUG", "State = ${adapter?.state}")
+
+        val bonded = adapter?.bondedDevices
+
+        android.util.Log.d("BT_DEBUG", "Bonded = ${bonded?.size}")
+
+        bonded?.forEach {
+            android.util.Log.d(
+                "BT_DEBUG",
+                "${it.name} | ${it.address}"
+            )
+        }
+
+        return bonded?.toList() ?: emptyList()
     }
 }

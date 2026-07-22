@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.kkr.juken5livemonitor.screen.ConnectScreen
+import com.kkr.juken5livemonitor.screen.Connect.ConnectScreen
 import com.kkr.juken5livemonitor.screen.MonitorScreen
 
 @Composable
@@ -30,7 +30,7 @@ fun AppNavigation() {
 
         }
 
-        composable("monitor") {
+        composable("com/kkr/juken5livemonitor/screen/monitor") {
 
             MonitorScreen(
 

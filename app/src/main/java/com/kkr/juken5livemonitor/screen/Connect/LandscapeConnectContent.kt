@@ -1,4 +1,4 @@
-package com.kkr.juken5livemonitor.screen
+package com.kkr.juken5livemonitor.screen.Connect
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
@@ -19,7 +19,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Refresh
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.foundation.shape.CircleShape
 
 @Composable
 fun LandscapeConnectContent(

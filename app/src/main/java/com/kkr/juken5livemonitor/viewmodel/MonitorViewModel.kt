@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import android.content.Context
 import com.kkr.juken5livemonitor.location.GPSSpeedProvider
+import android.util.Log
 
 class MonitorViewModel : ViewModel() {
 
@@ -40,6 +41,8 @@ class MonitorViewModel : ViewModel() {
 
         viewModelScope.launch(Dispatchers.IO) {
 
+            Log.d("FLOW", "===== START MONITOR =====")
+
             if (!repository.isConnected()) {
 
                 _status.value = "ECU Not Connected"
@@ -50,30 +53,31 @@ class MonitorViewModel : ViewModel() {
 
             }
 
-            _status.value = "Handshake..."
-
+            Log.d("FLOW", "Send Handshake (4602)")
             repository.handshake()
 
             delay(300)
 
+            Log.d("FLOW", "Set Listener")
             repository.setLiveListener { data ->
+
+                Log.d("FLOW", "LIVE DATA : $data")
 
                 _liveData.value = data.copy(
                     speed = _liveData.value.speed
                 )
-
             }
 
+            Log.d("FLOW", "Start Listening")
             repository.startListening()
 
             delay(200)
 
+            Log.d("FLOW", "Send Open Live (160A)")
             repository.openLive()
 
-            _status.value = "Live Monitoring"
-
+            Log.d("FLOW", "Waiting ECU Stream...")
         }
-
     }
     fun startGPS(context: Context) {
 
