@@ -26,23 +26,11 @@ object ECUProtocol {
     /** Request Diagnostic Data */
     const val DIAGNOSTIC = "4602\r\n"
 
-    /*
-     * ============================================================
-     * ECU INFORMATION
-     * ============================================================
-     */
-
     /** Download ECU Variables */
     const val GET_VARIABLE = "1607\r\n"
 
     /** Continue Download Map */
     const val GET_MAP = "1617\r\n"
-
-    /*
-     * ============================================================
-     * ECU RESPONSE HEADER
-     * ============================================================
-     */
 
     const val ACK = "1A00"
 

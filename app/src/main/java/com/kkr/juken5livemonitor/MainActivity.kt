@@ -4,10 +4,14 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import com.kkr.juken5livemonitor.navigation.AppNavigation
 import com.kkr.juken5livemonitor.ui.theme.Juken5LiveMonitorTheme
 
@@ -18,7 +22,7 @@ class MainActivity : ComponentActivity() {
             ActivityResultContracts.RequestMultiplePermissions()
         ) { permissions ->
 
-            val granted =
+            val btGranted =
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                     permissions[Manifest.permission.BLUETOOTH_SCAN] == true &&
                             permissions[Manifest.permission.BLUETOOTH_CONNECT] == true
@@ -26,20 +30,44 @@ class MainActivity : ComponentActivity() {
                     true
                 }
 
-            if (granted) {
+            val notifyGranted =
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    permissions[Manifest.permission.POST_NOTIFICATIONS] == true
+                } else {
+                    true
+                }
+
+            if (btGranted && notifyGranted) {
                 startApp()
             } else {
-                finish()
+                startApp()
             }
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (hasBluetoothPermission()) {
+        // Layar tidak mati
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+
+        // Fullscreen Edge-to-Edge
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        WindowInsetsControllerCompat(window, window.decorView).apply {
+
+            hide(
+                WindowInsetsCompat.Type.statusBars() or
+                        WindowInsetsCompat.Type.navigationBars()
+            )
+
+            systemBarsBehavior =
+                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        }
+
+        if (hasRequiredPermissions()) {
             startApp()
         } else {
-            requestBluetoothPermission()
+            requestRequiredPermissions()
         }
     }
 
@@ -57,9 +85,9 @@ class MainActivity : ComponentActivity() {
 
     }
 
-    private fun hasBluetoothPermission(): Boolean {
+    private fun hasRequiredPermissions(): Boolean {
 
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        val btPerms = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
 
             ContextCompat.checkSelfPermission(
                 this,
@@ -71,28 +99,37 @@ class MainActivity : ComponentActivity() {
                     ) == PackageManager.PERMISSION_GRANTED
 
         } else {
-
             true
-
         }
+
+        val notifyPerm = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.POST_NOTIFICATIONS
+            ) == PackageManager.PERMISSION_GRANTED
+        } else {
+            true
+        }
+
+        return btPerms && notifyPerm
 
     }
 
-    private fun requestBluetoothPermission() {
+    private fun requestRequiredPermissions() {
 
+        val perms = mutableListOf<String>()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            perms.add(Manifest.permission.BLUETOOTH_SCAN)
+            perms.add(Manifest.permission.BLUETOOTH_CONNECT)
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            perms.add(Manifest.permission.POST_NOTIFICATIONS)
+        }
 
-            permissionLauncher.launch(
-                arrayOf(
-                    Manifest.permission.BLUETOOTH_SCAN,
-                    Manifest.permission.BLUETOOTH_CONNECT
-                )
-            )
-
+        if (perms.isNotEmpty()) {
+            permissionLauncher.launch(perms.toTypedArray())
         } else {
-
             startApp()
-
         }
 
     }

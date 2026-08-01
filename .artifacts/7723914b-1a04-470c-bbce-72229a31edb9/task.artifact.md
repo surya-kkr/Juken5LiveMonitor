@@ -1,0 +1,9 @@
+- [x] Remove map references from `MonitorViewModel.kt`
+- [x] Delete Map UI files
+    - [x] `MapCenterPanel.kt`
+    - [x] `MapPanel.kt`
+    - [x] `ModernMapPanel.kt`
+- [x] Remove `osmdroid` dependency
+    - [x] `libs.versions.toml`
+    - [x] `app/build.gradle.kts`
+- [x] Verify build

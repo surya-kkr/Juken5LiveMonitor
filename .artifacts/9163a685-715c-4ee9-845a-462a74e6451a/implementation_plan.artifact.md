@@ -1,19 +1,44 @@
-# Fix Gradle Plugin Version Conflict
+# Implementation Plan - Switch to OpenStreetMap (OSM)
 
-The project is failing to sync because the `org.jetbrains.kotlin.android` plugin is being applied in the `:app` module with a version, but it wasn't managed at the root level. Since other Kotlin-related plugins (like `kotlin-compose`) are declared in the root, Gradle encounters a conflict or ambiguity regarding the version of the core Kotlin plugin.
+Due to persistent issues with Google Maps API billing/verification, we will migrate the map component to **OpenStreetMap (OSM)** using the **osmdroid** library. This will provide a free, no-API-key-required map experience while maintaining features like auto-rotation and satellite view (via Topo/Satellite tile sources).
 
 ## Proposed Changes
 
-### Build Configuration
+### 1. Dependencies & Configuration
 
-#### [MODIFY] [build.gradle.kts (root)](file:///E:/Project App Juken/Juken5LiveMonitor/build.gradle.kts)
-- Add `alias(libs.plugins.kotlin.android) apply false` to the `plugins` block. This ensures the Kotlin plugin version is managed at the root and shared across all modules, resolving the "unknown version" error.
+#### [MODIFY] [libs.versions.toml](file:///E:/Project App Juken/Juken5LiveMonitor/gradle/libs.versions.toml)
+- Add `osmdroid = "6.1.18"` to `[versions]`.
+- Add `osmdroid = { group = "org.osmdroid", name = "osmdroid-android", version.ref = "osmdroid" }` to `[libraries]`.
+
+#### [MODIFY] [build.gradle.kts (app)](file:///E:/Project App Juken/Juken5LiveMonitor/app/build.gradle.kts)
+- Add `implementation(libs.osmdroid)` to dependencies.
+- (Optional) Remove Google Maps dependencies once transition is complete.
+
+### 2. Map Implementation
+
+#### [MODIFY] [MapPanel.kt](file:///E:/Project App Juken/Juken5LiveMonitor/app/src/main/java/com/kkr/juken5livemonitor/screen/monitor/components/MapPanel.kt) [REPLACE]
+- Replace `GoogleMap` with `osmdroid`'s `MapView` inside an `AndroidView`.
+- **Initialization:** Initialize osmdroid configuration in a `LaunchedEffect`.
+- **Auto-Rotation:** Implement rotation logic using `mapView.mapOrientation = -bearing`.
+- **Controls:** Replace Map/Satellite toggle with OSM Tile Source switching (e.g., MAPNIK vs. USGS Satellite).
+- **Recenter:** Implement a custom recenter logic for the `MapView`.
+
+#### [MODIFY] [MonitorViewModel.kt](file:///E:/Project App Juken/Juken5LiveMonitor/app/src/main/java/com/kkr/juken5livemonitor/viewmodel/MonitorViewModel.kt)
+- Update `mapType` state to use a custom enum or OSM tile source identifier instead of Google's `MapType`.
+
+### 3. Cleanup
+
+#### [MODIFY] [AndroidManifest.xml](file:///E:/Project App Juken/Juken5LiveMonitor/app/src/main/AndroidManifest.xml)
+- Remove the Google Maps API Key meta-data.
 
 ## Verification Plan
 
 ### Automated Tests
-- Run Gradle Sync to verify that the "unknown version" error is resolved and the project syncs successfully.
-- Run `./gradlew assembleDebug` (if possible/requested) to ensure the build completes.
+- Run Gradle Sync to ensure `osmdroid` is downloaded correctly.
+- Build the app and verify no compilation errors.
 
 ### Manual Verification
-- Confirm that the `app` module correctly recognizes the Kotlin plugin and and there are no more plugin resolution errors.
+- **Immediate Loading:** Confirm the map loads instantly without "blank/beige" screens.
+- **Auto-Follow:** Verify the map centers and rotates as you move.
+- **Tile Switching:** Test the "Layers" button to switch between default and satellite/terrain views.
+- **Offline Cache:** Ensure tiles are being cached for smoother performance.

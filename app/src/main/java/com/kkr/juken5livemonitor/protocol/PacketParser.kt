@@ -36,12 +36,6 @@ class PacketParser {
     private var map = 0
     private var iat = 0.0
 
-    /**
-     * Parse SATU TOKEN
-     *
-     * Return ECULiveData hanya ketika
-     * satu paket A603 selesai diterima.
-     */
     fun parse(token: String): ECULiveData? {
 
         val data = token.trim()

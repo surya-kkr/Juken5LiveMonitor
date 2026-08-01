@@ -1,0 +1,4 @@
+- [ ] Update `MonitorViewModel.kt` with Racing Logic (Runtime, Top/Avg Speed, 0-100 Timer, HP calculation)
+- [ ] Update `EliteDashTelemetryGrid.kt` to 2-row layout with new data points
+- [ ] Connect "0-100" grid item click to arm the timer
+- [ ] Verify functionality with simulated data or GPS updates

@@ -36,8 +36,6 @@ fun GlassCard(
     ) {
 
         Box {
-
-            // Glass background
             Box(
                 modifier = Modifier
                     .matchParentSize()
@@ -53,7 +51,6 @@ fun GlassCard(
                     )
             )
 
-            // Red glow
             Box(
                 modifier = Modifier
                     .matchParentSize()
@@ -68,7 +65,6 @@ fun GlassCard(
                     )
             )
 
-            // Border
             Box(
                 modifier = Modifier
                     .matchParentSize()
@@ -82,7 +78,6 @@ fun GlassCard(
                     )
             )
 
-            // Content
             Box(
                 modifier = Modifier.padding(20.dp),
                 content = content

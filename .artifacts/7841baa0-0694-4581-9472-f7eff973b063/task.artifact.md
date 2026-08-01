@@ -1,0 +1,6 @@
+- [x] Tambahkan tombol UI KKRXAG di `SettingsDialog.kt`
+- [x] Daftarkan `KkrxagMonitor` di `MonitorLandscape.kt`
+- [x] Sesuaikan parameter data di `KkrxagMonitor.kt`
+- [x] Update label dan data di `KkrRacingBottomGrid.kt` (Oil Temp, Air Temp, Ignition, Injector)
+- [x] Pastikan fungsi 0-100 interaktif di `KkrRacingBottomGrid.kt`
+- [ ] Verifikasi tampilan dan data

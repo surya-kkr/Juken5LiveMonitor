@@ -1,0 +1,5 @@
+- `[x]` Update `TimerStatus` and add `countdownValue` in `MonitorViewModel.kt`
+- `[x]` Implement countdown logic in `armZeroToHundred()` in `MonitorViewModel.kt`
+- `[x]` Create `CountdownOverlay` in `MonitorLandscape.kt`
+- `[x]` Integrate overlay into the main UI in `MonitorLandscape.kt`
+- `[ ]` Verify countdown behavior and visual dimming

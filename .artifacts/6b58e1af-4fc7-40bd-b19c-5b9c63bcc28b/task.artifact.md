@@ -1,0 +1,15 @@
+- [ ] Create `engine` package files
+    - [ ] `ProjectionState.kt`
+    - [ ] `ProjectionManager.kt`
+    - [ ] `AndroidAutoEngine.kt`
+    - [ ] `ProjectionLifecycle.kt`
+- [ ] Create `render` package files
+    - [ ] `AndroidAutoSurface.kt`
+    - [ ] `SurfaceContainer.kt`
+- [ ] Create `input` package files
+    - [ ] `TouchDispatcher.kt`
+    - [ ] `KeyDispatcher.kt`
+- [ ] Create `audio` package files
+    - [ ] `AudioRouter.kt`
+- [ ] Update `AndroidAutoPanel.kt` integration
+- [ ] Verify build and functionality

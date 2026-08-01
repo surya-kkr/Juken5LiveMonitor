@@ -1,6 +1,7 @@
 package com.kkr.juken5livemonitor.screen
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
@@ -24,6 +25,10 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.compose.ui.platform.LocalContext
+import android.content.res.Configuration
+import androidx.compose.ui.platform.LocalConfiguration
+import com.kkr.juken5livemonitor.screen.monitor.MonitorLandscape
+import com.kkr.juken5livemonitor.screen.monitor.components.SettingsDialog
 
 @Composable
 fun MonitorScreen(
@@ -32,9 +37,18 @@ fun MonitorScreen(
     vm: MonitorViewModel = viewModel()
 ) {
 
-    val realLiveData by vm.liveData.collectAsState()
-    val realStatus by vm.status.collectAsState()
+    val liveData by vm.liveData.collectAsState()
+    val status by vm.status.collectAsState()
+    val bikeName by vm.bikeName.collectAsState()
+    val selectedUi by vm.selectedUi.collectAsState()
+    val vehicleWeight by vm.vehicleWeight.collectAsState()
+    val riderWeight by vm.riderWeight.collectAsState()
+    val drivetrainType by vm.drivetrainType.collectAsState()
+
+    var showSettings by remember { mutableStateOf(false) }
+
     val context = LocalContext.current
+    val configuration = LocalConfiguration.current
     val locationPermissionLauncher =
         rememberLauncherForActivityResult(
             contract = ActivityResultContracts.RequestPermission()
@@ -45,34 +59,6 @@ fun MonitorScreen(
             }
 
         }
-    val liveData =
-        if (demoMode) {
-
-            com.kkr.juken5livemonitor.model.ECULiveData(
-                rpm = 4250,
-                tps = 34,
-                battery = 13.92,
-                afr = 13.8,
-                eot = 86.5,
-                iat = 30.4,
-                map = 42,
-                ignition = 18.5,
-                injector = "2.35 ms",
-                fuel = "Bensin Rakyat Jelata",
-                baseMap = "Map 2"
-            )
-
-        } else {
-
-            realLiveData
-
-        }
-
-    val status =
-        if (demoMode)
-            "Demo Dashboard"
-        else
-            realStatus
 
     LaunchedEffect(Unit) {
 
@@ -97,6 +83,8 @@ fun MonitorScreen(
 
             }
 
+        } else {
+            vm.startDemoMode()
         }
 
     }
@@ -111,6 +99,35 @@ fun MonitorScreen(
 
     }
 
+    if (showSettings) {
+        SettingsDialog(
+            currentBikeName = bikeName,
+            currentUi = selectedUi,
+            currentVehicleWeight = vehicleWeight,
+            currentRiderWeight = riderWeight,
+            currentDrivetrain = drivetrainType,
+            showUiSelection = false,
+            onDismiss = { showSettings = false }
+        ) { name, ui, vWeight, rWeight, drive ->
+            vm.updateBikeName(name)
+            vm.updateSelectedUi(ui)
+            vm.updateVehicleSettings(vWeight, rWeight, drive)
+            showSettings = false
+        }
+    }
+
+    if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+
+        MonitorLandscape(
+            navController = navController,
+            liveData = liveData,
+            vm = vm
+        )
+
+        return
+
+    }
+
     GlassBackground {
 
         Column(
@@ -121,42 +138,13 @@ fun MonitorScreen(
         ) {
 
             GlassTopBar(
-                connected = status.contains("Live", true)
+                connected = status.contains("Live", true) || status == "Connected" || demoMode,
+                ecuName = bikeName,
+                onSettingsClick = { showSettings = true }
             )
 
-            Spacer(modifier = Modifier.height(20.dp))
-            GlassCard {
 
-                Column(
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-
-                    Text(
-                        text = "Connection Status",
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White
-                    )
-
-                    Spacer(modifier = Modifier.height(10.dp))
-
-                    Text(
-                        text = status,
-                        style = MaterialTheme.typography.titleLarge,
-                        fontWeight = FontWeight.Bold,
-                        color = when {
-                            status.contains("Live", true) -> Color(0xFF00E676)
-                            status.contains("Handshake", true) -> Color(0xFFFFD54F)
-                            status.contains("Disconnected", true) -> Color(0xFFFF5252)
-                            else -> Color.LightGray
-                        }
-                    )
-
-                }
-
-            }
-
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(10.dp))
 
             GlassCard {
 
@@ -171,7 +159,7 @@ fun MonitorScreen(
                         color = Color.LightGray
                     )
 
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(8.dp))
 
                     Text(
                         text = liveData.rpm.toString(),
@@ -227,7 +215,7 @@ fun MonitorScreen(
 
                 SensorCard(
                     modifier = Modifier.weight(1f),
-                    title = "Speed",
+                    title = "Speed GPS",
                     value = "${liveData.speed.toInt()} km/h"
                 )
 
@@ -282,8 +270,12 @@ fun MonitorScreen(
 
                 SensorCard(
                     modifier = Modifier.weight(1f),
-                    title = "Fuel",
-                    value = liveData.fuel
+                    title = "Core Active",
+                    value = when (liveData.fuel) {
+                        "0" -> "1"
+                        "1" -> "2"
+                        else -> liveData.fuel
+                    }
                 )
 
                 SensorCard(
@@ -294,7 +286,7 @@ fun MonitorScreen(
 
             }
 
-            Spacer(modifier = Modifier.height(28.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
             GlassButton(
                 text = "DISCONNECT",
@@ -315,6 +307,7 @@ fun MonitorScreen(
     }
 
 }
+
 @Composable
 private fun SensorCard(
     modifier: Modifier = Modifier,
@@ -344,7 +337,8 @@ private fun SensorCard(
                 text = value,
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold,
-                color = Color.White
+                color = Color.White,
+                modifier = Modifier.basicMarquee()
             )
 
         }

@@ -14,7 +14,6 @@ class BluetoothScanner(private val context: Context) {
 
     fun getPairedDevices(): List<BluetoothDevice> {
 
-        // Android 12 (API 31) ke atas wajib punya BLUETOOTH_CONNECT
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val granted = ContextCompat.checkSelfPermission(
                 context,

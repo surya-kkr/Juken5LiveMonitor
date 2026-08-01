@@ -9,6 +9,7 @@ import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.background
+import androidx.compose.foundation.shape.CircleShape
 import com.kkr.juken5livemonitor.ui.components.GlassButton
 import com.kkr.juken5livemonitor.ui.components.GlassCard
 import android.bluetooth.BluetoothDevice
@@ -24,7 +25,11 @@ import androidx.compose.material3.IconButton
 fun LandscapeConnectContent(
     devices: List<BluetoothDevice>,
     status: String,
-    onConnect: (BluetoothDevice) -> Unit
+    isNotificationEnabled: Boolean,
+    onConnect: (BluetoothDevice) -> Unit,
+    onDemoMode: () -> Unit = {},
+    onRefresh: () -> Unit = {},
+    onGrantNotification: () -> Unit = {}
 ) {
 
     Row(
@@ -33,7 +38,7 @@ fun LandscapeConnectContent(
 
         Box(
             modifier = Modifier
-                .weight(0.35f)
+                .weight(0.4f)
                 .fillMaxHeight()
         ) {
 
@@ -45,7 +50,9 @@ fun LandscapeConnectContent(
 
                 GlassTopBar(
                     connected = false,
-                    ecuName = "BRT Juken 5 by KKR"
+                    ecuName = "Juken 5 Live Monitor",
+                    subtitle = "By KKR X AG",
+                    inlineSubtitle = false
                 )
 
                 Spacer(modifier = Modifier.height(12.dp))
@@ -69,10 +76,11 @@ fun LandscapeConnectContent(
 
                             Text(
                                 text = status,
-                                color = if (status == "Connected")
-                                    Color(0xFF00E676)
-                                else
-                                    Color.White
+                                color = when (status) {
+                                    "Connected" -> Color(0xFF00E676)
+                                    "Connecting..." -> Color(0xFFFFD54F)
+                                    else -> Color.White
+                                }
                             )
 
                         }
@@ -81,10 +89,12 @@ fun LandscapeConnectContent(
                             modifier = Modifier
                                 .size(12.dp)
                                 .background(
-                                    if (status == "Connected")
-                                        Color(0xFF00E676)
-                                    else
-                                        Color(0xFFE53935)
+                                    when (status) {
+                                        "Connected" -> Color(0xFF00E676)
+                                        "Connecting..." -> Color(0xFFFFD54F)
+                                        else -> Color(0xFFE53935)
+                                    },
+                                    CircleShape
                                 )
                         )
 
@@ -94,11 +104,12 @@ fun LandscapeConnectContent(
 
                 Spacer(modifier = Modifier.weight(1f))
 
+
                 GlassButton(
                     text = "DEMO DASHBOARD",
                     modifier = Modifier.fillMaxWidth()
                 ) {
-
+                    onDemoMode()
                 }
 
             }
@@ -109,7 +120,7 @@ fun LandscapeConnectContent(
 
         Box(
             modifier = Modifier
-                .weight(0.65f)
+                .weight(0.6f)
                 .fillMaxHeight()
         ) {
 
@@ -131,9 +142,7 @@ fun LandscapeConnectContent(
                     )
 
                     IconButton(
-                        onClick = {
-
-                        }
+                        onClick = onRefresh
                     ) {
 
                         Icon(

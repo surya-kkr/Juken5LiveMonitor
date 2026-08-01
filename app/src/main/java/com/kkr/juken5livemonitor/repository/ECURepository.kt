@@ -36,9 +36,6 @@ class ECURepository {
         return bt?.send(command) ?: false
     }
 
-    /**
-     * Callback ketika satu paket Live selesai diparse.
-     */
     fun setLiveListener(
 
         callback: (ECULiveData) -> Unit

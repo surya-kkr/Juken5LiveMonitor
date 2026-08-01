@@ -5,7 +5,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Bluetooth
+import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,7 +22,10 @@ import androidx.compose.ui.unit.dp
 fun GlassTopBar(
 
     connected: Boolean = false,
-    ecuName: String = "BRT Juken 5"
+    ecuName: String = "BRT Juken 5",
+    subtitle: String? = null,
+    inlineSubtitle: Boolean = false,
+    onSettingsClick: (() -> Unit)? = null
 
 ) {
 
@@ -70,17 +75,45 @@ fun GlassTopBar(
             modifier = Modifier.weight(1f)
         ) {
 
-            Text(
+            if (inlineSubtitle && subtitle != null) {
+                Row(verticalAlignment = Alignment.Bottom) {
+                    Text(
+                        text = ecuName,
+                        style = MaterialTheme.typography.headlineSmall,
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = subtitle,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = Color.LightGray,
+                        fontWeight = FontWeight.Medium,
+                        modifier = Modifier.padding(bottom = 4.dp)
+                    )
+                }
+            } else {
+                Text(
 
-                text = ecuName,
+                    text = ecuName,
 
-                style = MaterialTheme.typography.headlineSmall,
+                    style = MaterialTheme.typography.headlineSmall,
 
-                color = Color.White,
+                    color = Color.White,
 
-                fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold
 
-            )
+                )
+
+                subtitle?.let {
+                    Text(
+                        text = it,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = Color.LightGray,
+                        fontWeight = FontWeight.Medium
+                    )
+                }
+            }
 
             Spacer(modifier = Modifier.height(4.dp))
 
@@ -126,6 +159,17 @@ fun GlassTopBar(
 
             }
 
+        }
+
+        if (onSettingsClick != null) {
+            IconButton(onClick = onSettingsClick) {
+                Icon(
+                    imageVector = Icons.Rounded.Settings,
+                    contentDescription = "Settings",
+                    tint = Color.White,
+                    modifier = Modifier.size(32.dp)
+                )
+            }
         }
 
     }

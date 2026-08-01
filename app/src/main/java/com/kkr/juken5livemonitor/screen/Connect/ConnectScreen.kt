@@ -35,6 +35,14 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import android.content.res.Configuration
 import android.util.Log
+import android.provider.Settings
+import android.content.Intent
+import android.os.Build
+import android.Manifest
+import android.content.pm.PackageManager
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.compose.ui.platform.LocalConfiguration
 
 @SuppressLint("MissingPermission")
@@ -65,8 +73,35 @@ fun ConnectScreen(
         mutableStateOf("Disconnected")
     }
 
-    LaunchedEffect(Unit) {
+    var isNotificationAccessGranted by remember {
+        mutableStateOf(false)
+    }
 
+    var isPostNotificationPermissionGranted by remember {
+        mutableStateOf(false)
+    }
+
+    val postNotificationLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission()
+    ) { granted ->
+        isPostNotificationPermissionGranted = granted
+    }
+
+    LaunchedEffect(Unit) {
+        isNotificationAccessGranted = Settings.Secure.getString(
+            context.contentResolver,
+            "enabled_notification_listeners"
+        )?.contains(context.packageName) == true
+
+        isPostNotificationPermissionGranted = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            ContextCompat.checkSelfPermission(
+                context,
+                Manifest.permission.POST_NOTIFICATIONS
+            ) == PackageManager.PERMISSION_GRANTED
+        } else {
+            true
+        }
+        
         val list = scanner.getPairedDevices()
 
         Log.d("BT_DEBUG", "Start = ${list.size}")
@@ -92,6 +127,7 @@ fun ConnectScreen(
             LandscapeConnectContent(
                 devices = devices,
                 status = status,
+                isNotificationEnabled = isNotificationAccessGranted && isPostNotificationPermissionGranted,
                 onConnect = { device ->
 
                     connecting = true
@@ -123,6 +159,17 @@ fun ConnectScreen(
 
                     }
 
+                },
+                onDemoMode = {
+                    navController.navigate("monitor_demo")
+                },
+                onRefresh = {
+                    val list = scanner.getPairedDevices()
+                    Log.d("BT_DEBUG", "Refresh Landscape = ${list.size}")
+                    devices = list
+                },
+                onGrantNotification = {
+                    context.startActivity(Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"))
                 }
             )
 
@@ -136,7 +183,8 @@ fun ConnectScreen(
 
                 GlassTopBar(
                     connected = status == "Connected",
-                    ecuName = "BRT Juken 5 by KKR"
+                    ecuName = "Juken 5 Live Monitor",
+                    subtitle = "By KKR X AG"
                 )
 
                 Spacer(modifier = Modifier.height(24.dp))
@@ -318,10 +366,11 @@ fun ConnectScreen(
                                 text = status,
                                 style = MaterialTheme.typography.titleMedium,
                                 fontWeight = FontWeight.Bold,
-                                color = if (status == "Connected")
-                                    Color(0xFF00E676)
-                                else
-                                    Color.White
+                                color = when (status) {
+                                    "Connected" -> Color(0xFF00E676)
+                                    "Connecting..." -> Color(0xFFFFD54F)
+                                    else -> Color.White
+                                }
                             )
 
                         }
@@ -331,10 +380,11 @@ fun ConnectScreen(
                                 .size(14.dp)
                                 .clip(CircleShape)
                                 .background(
-                                    if (status == "Connected")
-                                        Color(0xFF00E676)
-                                    else
-                                        Color(0xFFE53935)
+                                    when (status) {
+                                        "Connected" -> Color(0xFF00E676)
+                                        "Connecting..." -> Color(0xFFFFD54F)
+                                        else -> Color(0xFFE53935)
+                                    }
                                 )
                         )
 
@@ -342,6 +392,7 @@ fun ConnectScreen(
 
                 }
                 Spacer(modifier = Modifier.height(20.dp))
+
 
                 GlassButton(
                     text = "DEMO DASHBOARD",

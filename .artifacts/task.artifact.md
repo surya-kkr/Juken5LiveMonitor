@@ -1,0 +1,6 @@
+- [/] Perbarui logika `estHorsePower` di `MonitorViewModel.kt`
+    - [ ] Reset HP ke 0.0 saat arming/ready
+    - [ ] Implementasi kalkulasi HP instan selama status `RUNNING`
+    - [ ] Implementasi pencatatan Peak HP
+    - [ ] Hentikan kalkulasi saat status `FINISHED`
+- [ ] Verifikasi build

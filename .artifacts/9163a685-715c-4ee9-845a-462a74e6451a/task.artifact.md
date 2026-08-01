@@ -1,0 +1,5 @@
+- `[x]` Update `MonitorViewModel` to support bearing and map type states
+- `[x]` Enhance `GPSSpeedProvider` for better location/bearing tracking
+- `[x]` Update `MapPanel` with auto-rotation, traffic, and map type controls
+- `[x]` Update `MonitorLandscape` to integrate new map features
+- `[x]` Verify changes and API key configuration

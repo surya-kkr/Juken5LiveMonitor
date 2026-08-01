@@ -12,14 +12,14 @@ class GPSSpeedProvider(
     private val client =
         LocationServices.getFusedLocationProviderClient(context)
 
-    private var callback: ((Float) -> Unit)? = null
+    private var callback: ((Location) -> Unit)? = null
 
     @SuppressLint("MissingPermission")
     fun start(
-        onSpeedChanged: (Float) -> Unit
+        onLocationChanged: (Location) -> Unit
     ) {
 
-        callback = onSpeedChanged
+        callback = onLocationChanged
 
         val request = LocationRequest.Builder(
             Priority.PRIORITY_HIGH_ACCURACY,
@@ -47,13 +47,10 @@ class GPSSpeedProvider(
 
             override fun onLocationResult(result: LocationResult) {
 
-                val location: Location =
+                val location =
                     result.lastLocation ?: return
 
-                val speed =
-                    location.speed * 3.6f
-
-                callback?.invoke(speed)
+                callback?.invoke(location)
 
             }
 
