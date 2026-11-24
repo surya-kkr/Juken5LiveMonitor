@@ -1,3 +1,11 @@
+<h1 align="center">Juken 5 Live Monitor</h1>
+
+<p align="center">
+  <a href="https://github.com/surya-kkr/Juken5LiveMonitor/releases/download/v0.4.0/Juken5LiveMonitor.V0.4.0.apk">
+    <strong>⬇️ Download APK V0.4.0</strong>
+  </a>
+</p>
+
 # ✨ Features
 
 - 📡 Bluetooth connection to BRT Juken 5 ECU
