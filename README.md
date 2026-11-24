@@ -13,6 +13,18 @@
 
 ---
 
+## 📋 Update V0.4.0
+
+- Support New Bluetooth Connection
+- Support Android Auto Self Mode
+- Add 2 New Themes
+- Add Record Log
+- Overheat Warning
+- Auto Reconnect ECU
+- Fix Some Bugs
+
+---
+
 ## 📱 Screenshots
 
 v0.0.1
