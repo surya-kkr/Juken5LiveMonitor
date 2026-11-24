@@ -27,36 +27,6 @@
 
 ---
 
-## 📱 Screenshots
-
-### Landscape
-
-<p align="center">
-  <img src="docs/screenshots/landscape-1.jpg" width="24%" />
-  <img src="docs/screenshots/landscape-2.jpg" width="24%" />
-  <img src="docs/screenshots/landscape-3.jpg" width="24%" />
-  <img src="docs/screenshots/landscape-4.jpg" width="24%" />
-</p>
-<p align="center">
-  <img src="docs/screenshots/landscape-5.jpg" width="24%" />
-  <img src="docs/screenshots/landscape-6.jpg" width="24%" />
-</p>
-
-### Portrait
-
-<p align="center">
-  <img src="docs/screenshots/portrait-9.jpg" width="22%" />
-  <img src="docs/screenshots/portrait-10.jpg" width="22%" />
-  <img src="docs/screenshots/portrait-11.jpg" width="22%" />
-  <img src="docs/screenshots/portrait-12.jpg" width="22%" />
-</p>
-<p align="center">
-  <img src="docs/screenshots/portrait-13.jpg" width="22%" />
-  <img src="docs/screenshots/portrait-14.jpg" width="22%" />
-</p>
-
----
-
 ## 🛠 Tech Stack
 
 - Kotlin
@@ -127,6 +97,36 @@ Run the project on Android 8.0+.
 5. Tap the three-dot menu in the top-right corner, then select **Start head unit server**.
 6. Return to the Juken 5 Live Monitor app.
 7. Adjust the Android Auto DPI using the app's settings.
+
+---
+
+## 📱 Screenshots
+
+### Landscape
+
+<p align="center">
+  <img src="docs/screenshots/landscape-1.jpg" width="24%" />
+  <img src="docs/screenshots/landscape-2.jpg" width="24%" />
+  <img src="docs/screenshots/landscape-3.jpg" width="24%" />
+  <img src="docs/screenshots/landscape-4.jpg" width="24%" />
+</p>
+<p align="center">
+  <img src="docs/screenshots/landscape-5.jpg" width="24%" />
+  <img src="docs/screenshots/landscape-6.jpg" width="24%" />
+</p>
+
+### Portrait
+
+<p align="center">
+  <img src="docs/screenshots/portrait-9.jpg" width="22%" />
+  <img src="docs/screenshots/portrait-10.jpg" width="22%" />
+  <img src="docs/screenshots/portrait-11.jpg" width="22%" />
+  <img src="docs/screenshots/portrait-12.jpg" width="22%" />
+</p>
+<p align="center">
+  <img src="docs/screenshots/portrait-13.jpg" width="22%" />
+  <img src="docs/screenshots/portrait-14.jpg" width="22%" />
+</p>
 
 ---
 
