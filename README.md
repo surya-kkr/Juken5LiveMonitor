@@ -76,6 +76,10 @@ Open using Android Studio.
 
 Run the project on Android 8.0+.
 
+## 📦 Download APK
+
+[⬇️ Download Juken5LiveMonitor V0.4.0 APK](https://github.com/surya-kkr/Juken5LiveMonitor/releases/download/v0.4.0/Juken5LiveMonitor.V0.4.0.apk)
+
 ---
 
 ## 🚧 Roadmap
