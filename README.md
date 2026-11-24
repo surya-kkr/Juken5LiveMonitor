@@ -27,7 +27,29 @@
 
 ## 📱 Screenshots
 
-v0.0.1
+### Landscape
+
+<p align="center">
+  <img src="docs/screenshots/landscape-1.jpg" width="24%" />
+  <img src="docs/screenshots/landscape-2.jpg" width="24%" />
+  <img src="docs/screenshots/landscape-3.jpg" width="24%" />
+  <img src="docs/screenshots/landscape-4.jpg" width="24%" />
+</p>
+<p align="center">
+  <img src="docs/screenshots/landscape-5.jpg" width="24%" />
+  <img src="docs/screenshots/landscape-6.jpg" width="24%" />
+  <img src="docs/screenshots/landscape-7.jpg" width="24%" />
+  <img src="docs/screenshots/landscape-8.jpg" width="24%" />
+</p>
+
+### Portrait
+
+<p align="center">
+  <img src="docs/screenshots/portrait-9.jpg" width="22%" />
+  <img src="docs/screenshots/portrait-10.jpg" width="22%" />
+  <img src="docs/screenshots/portrait-11.jpg" width="22%" />
+  <img src="docs/screenshots/portrait-12.jpg" width="22%" />
+</p>
 
 ---
 
