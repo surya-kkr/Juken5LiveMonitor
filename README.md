@@ -48,6 +48,10 @@
   <img src="docs/screenshots/portrait-11.jpg" width="22%" />
   <img src="docs/screenshots/portrait-12.jpg" width="22%" />
 </p>
+<p align="center">
+  <img src="docs/screenshots/portrait-13.jpg" width="22%" />
+  <img src="docs/screenshots/portrait-14.jpg" width="22%" />
+</p>
 
 ---
 
