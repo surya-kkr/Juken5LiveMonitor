@@ -36,24 +36,6 @@
 
 ---
 
-## 📥 Installation
-
-Clone this repository
-
-```bash
-git clone https://github.com/surya-kkr/Juken5LiveMonitor.git
-```
-
-Open using Android Studio.
-
-Run the project on Android 8.0+.
-
-## 📦 Download APK
-
-[⬇️ Download Juken5LiveMonitor V0.4.0 APK](https://github.com/surya-kkr/Juken5LiveMonitor/releases/download/v0.4.0/Juken5LiveMonitor.V0.4.0.apk)
-
----
-
 ## 📖 Tutorial Penggunaan (Bahasa Indonesia)
 
 ### Menghubungkan ECU Juken 5
@@ -139,6 +121,22 @@ Run the project on Android 8.0+.
 - [x] Graph View
 - [x] Dark Theme
 - [ ] ECU Configuration
+
+---
+
+## 📥 Installation
+
+Clone this repository:
+
+```bash
+git clone https://github.com/surya-kkr/Juken5LiveMonitor.git
+```
+
+Open the project using Android Studio and run it on Android 8.0 or later.
+
+## 📦 Download APK
+
+[⬇️ Download Juken5LiveMonitor V0.4.0 APK](https://github.com/surya-kkr/Juken5LiveMonitor/releases/download/v0.4.0/Juken5LiveMonitor.V0.4.0.apk)
 
 ---
 
