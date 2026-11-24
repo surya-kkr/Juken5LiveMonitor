@@ -38,8 +38,6 @@
 <p align="center">
   <img src="docs/screenshots/landscape-5.jpg" width="24%" />
   <img src="docs/screenshots/landscape-6.jpg" width="24%" />
-  <img src="docs/screenshots/landscape-7.jpg" width="24%" />
-  <img src="docs/screenshots/landscape-8.jpg" width="24%" />
 </p>
 
 ### Portrait
