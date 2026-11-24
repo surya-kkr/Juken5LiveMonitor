@@ -58,10 +58,10 @@ Run the project on Android 8.0+.
 
 - [x] Bluetooth Connection
 - [x] Live Dashboard
-- [ ] Data Logging
+- [x] Data Logging
 - [ ] Export CSV
-- [ ] Graph View
-- [ ] Dark/Light Theme
+- [x] Graph View
+- [x] Dark Theme
 - [ ] ECU Configuration
 
 ---
