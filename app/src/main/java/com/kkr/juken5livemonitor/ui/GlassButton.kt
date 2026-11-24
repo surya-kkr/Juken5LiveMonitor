@@ -16,6 +16,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.draw.scale
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Icon
+import androidx.compose.ui.graphics.vector.ImageVector
 import kotlinx.coroutines.launch
 import androidx.compose.runtime.rememberCoroutineScope
 
@@ -24,6 +29,8 @@ fun GlassButton(
     text: String,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    icon: ImageVector? = null,
+    containerColor: Color = Color(0xFFE53935),
     onClick: () -> Unit
 ) {
 
@@ -35,7 +42,7 @@ fun GlassButton(
 
     val buttonColor by animateColorAsState(
         targetValue = if (enabled)
-            Color(0xFFE53935)
+            containerColor
         else
             Color(0xFF7A7A7A),
         label = ""
@@ -79,6 +86,16 @@ fun GlassButton(
             hoveredElevation = 10.dp
         )
     ) {
+
+        if (icon != null) {
+            Icon(
+                imageVector = icon,
+                contentDescription = null,
+                modifier = Modifier.size(20.dp),
+                tint = Color.White
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+        }
 
         Text(
             text = text,

@@ -19,8 +19,10 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url = uri("https://jitpack.io") }
     }
 }
 
 rootProject.name = "Juken 5 Live Monitor"
 include(":app")
+include(":contract")

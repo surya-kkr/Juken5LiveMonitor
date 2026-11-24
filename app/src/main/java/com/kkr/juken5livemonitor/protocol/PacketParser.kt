@@ -18,10 +18,21 @@ class PacketParser {
         INJECTOR,
         IGNITION,
         MAP,
-        IAT
+        IAT,
+        SYNC_DATA
     }
 
     private var state = State.WAIT_HEADER
+    private var syncCounter = 0
+    private var syncTarget = 0
+    private var currentHeader = ""
+    private val syncBuffer = mutableListOf<String>()
+
+    private var onChunkComplete: ((String, List<String>) -> Unit)? = null
+
+    fun setSyncListener(callback: (String, List<String>) -> Unit) {
+        onChunkComplete = callback
+    }
 
     private var tps = 0
     private var battery = 0.0
@@ -43,20 +54,60 @@ class PacketParser {
         if (data.isEmpty())
             return null
 
+        if (data.equals(ECUProtocol.PING_RESPONSE, true)) {
+            onChunkComplete?.invoke(ECUProtocol.PING_RESPONSE, listOf(data))
+            return null
+        }
+
+        if (data.equals(ECUProtocol.ACK, true)) {
+            onChunkComplete?.invoke(ECUProtocol.ACK, listOf(ECUProtocol.ACK))
+            return null
+        }
+
         when (state) {
 
             State.WAIT_HEADER -> {
 
-                if (data.equals(
-                        ECUProtocol.LIVE_HEADER,
-                        true
-                    )
-                ) {
-
-                    state = State.TPS
-
+                when {
+                    data.equals(ECUProtocol.LIVE_HEADER, true) -> {
+                        state = State.TPS
+                        onChunkComplete?.invoke(ECUProtocol.LIVE_HEADER, listOf(data))
+                    }
+                    data == ECUProtocol.VARIABLE_HEADER -> startSync(data, 73)
+                    data == ECUProtocol.MODEL_HEADER -> startSync(data, 3)
+                    data == ECUProtocol.FUELMAP_HEADER -> startSync(data, 61)
+                    data == ECUProtocol.BASEMAP_HEADER -> startSync(data, 61)
+                    data == ECUProtocol.INJECTOR_HEADER -> startSync(data, 61)
+                    data == ECUProtocol.IGNITION_HEADER -> startSync(data, 31)
+                    data == ECUProtocol.HISTORY_HEADER -> startSync(data, 61)
+                    data == ECUProtocol.REMOTE_READY_HEADER ->
+                        onChunkComplete?.invoke(ECUProtocol.REMOTE_READY_HEADER, listOf(data))
                 }
 
+            }
+
+            State.SYNC_DATA -> {
+                // If we see a known header while in SYNC_DATA, 
+                // the previous sync might have finished early or was interrupted.
+                if (isHeader(data)) {
+                    val finalBuffer = ArrayList(syncBuffer)
+                    val header = currentHeader
+                    reset()
+                    onChunkComplete?.invoke(header, finalBuffer)
+                    
+                    // Re-process this token as a header for the next state
+                    return parse(data)
+                }
+
+                syncBuffer.add(data)
+                syncCounter++
+
+                if (syncCounter >= syncTarget) {
+                    val finalBuffer = ArrayList(syncBuffer)
+                    val header = currentHeader
+                    reset()
+                    onChunkComplete?.invoke(header, finalBuffer)
+                }
             }
 
             State.TPS -> {
@@ -223,7 +274,29 @@ class PacketParser {
     private fun reset() {
 
         state = State.WAIT_HEADER
+        syncCounter = 0
+        syncBuffer.clear()
 
+    }
+
+    private fun startSync(header: String, target: Int) {
+        state = State.SYNC_DATA
+        syncTarget = target
+        syncCounter = 0
+        currentHeader = header
+        syncBuffer.clear()
+    }
+
+    private fun isHeader(token: String): Boolean {
+        return token == ECUProtocol.VARIABLE_HEADER ||
+                token == ECUProtocol.MODEL_HEADER ||
+                token == ECUProtocol.FUELMAP_HEADER ||
+                token == ECUProtocol.BASEMAP_HEADER ||
+                token == ECUProtocol.INJECTOR_HEADER ||
+                token == ECUProtocol.IGNITION_HEADER ||
+                token == ECUProtocol.HISTORY_HEADER ||
+                token == ECUProtocol.REMOTE_READY_HEADER ||
+                token.equals(ECUProtocol.LIVE_HEADER, true)
     }
 
     private fun adcToMap(adc: Double): Int {

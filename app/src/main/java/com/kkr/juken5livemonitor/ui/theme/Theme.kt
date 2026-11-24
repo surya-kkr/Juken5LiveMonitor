@@ -1,8 +1,10 @@
 package com.kkr.juken5livemonitor.ui.theme
 
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
 
 private val DarkColorScheme = darkColorScheme(
@@ -37,10 +39,14 @@ fun Juken5LiveMonitorTheme(
 
         colorScheme = DarkColorScheme,
 
-        typography = Typography,
+        typography = Typography
 
-        content = content
-
-    )
+    ) {
+        CompositionLocalProvider(
+            LocalTextStyle provides LocalTextStyle.current.copy(fontFamily = AppFontFamily)
+        ) {
+            content()
+        }
+    }
 
 }

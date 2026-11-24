@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.kkr.headunitlivemonitor.main.HomeFragment"
+        android:label="@string/app_name">
+        <action
+            android:id="@+id/action_homeFragment_to_usbListFragment"
+            app:destination="@id/usbListFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeFragment_to_networkListFragment"
+            app:destination="@id/networkListFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.kkr.headunitlivemonitor.main.SettingsFragment"
+        android:label="@string/settings">
+        <action
+            android:id="@+id/action_settingsFragment_to_keymapFragment"
+            app:destination="@id/keymapFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_settingsFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_settingsFragment_to_autoConnectFragment"
+            app:destination="@id/autoConnectFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_settingsFragment_to_darkModeFragment"
+            app:destination="@id/darkModeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_settingsFragment_to_autoStartFragment"
+            app:destination="@id/autoStartFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_settingsFragment_to_vehicleInfoFragment"
+            app:destination="@id/vehicleInfoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_settingsFragment_to_loadingScreenFragment"
+            app:destination="@id/loadingScreenFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_settingsFragment_to_micSettingsFragment"
+            app:destination="@id/micSettingsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+
+
+    <fragment
+        android:id="@+id/keymapFragment"
+        android:name="com.kkr.headunitlivemonitor.main.KeymapFragment"
+        android:label="@string/keymap" />
+
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.kkr.headunitlivemonitor.main.AboutFragment"
+        android:label="@string/about" />
+
+    <fragment
+        android:id="@+id/autoConnectFragment"
+        android:name="com.kkr.headunitlivemonitor.main.AutoConnectFragment"
+        android:label="@string/auto_connect_settings" />
+
+    <fragment
+        android:id="@+id/darkModeFragment"
+        android:name="com.kkr.headunitlivemonitor.main.DarkModeFragment"
+        android:label="@string/dark_mode_settings" />
+
+    <fragment
+        android:id="@+id/autoStartFragment"
+        android:name="com.kkr.headunitlivemonitor.main.AutoStartFragment"
+        android:label="@string/auto_start_settings" />
+
+    <fragment
+        android:id="@+id/vehicleInfoFragment"
+        android:name="com.kkr.headunitlivemonitor.main.VehicleInfoFragment"
+        android:label="@string/vehicle_info_settings" />
+
+    <fragment
+        android:id="@+id/loadingScreenFragment"
+        android:name="com.kkr.headunitlivemonitor.main.LoadingScreenFragment"
+        android:label="@string/loading_screen" />
+
+    <fragment
+        android:id="@+id/usbListFragment"
+        android:name="com.kkr.headunitlivemonitor.main.UsbListFragment"
+        android:label="@string/usb" />
+
+    <fragment
+        android:id="@+id/networkListFragment"
+        android:name="com.kkr.headunitlivemonitor.main.NetworkListFragment"
+        android:label="@string/wifi" />
+
+    <fragment
+        android:id="@+id/micSettingsFragment"
+        android:name="com.kkr.headunitlivemonitor.main.MicSettingsFragment"
+        android:label="@string/microphone_settings" />
+
+</navigation>

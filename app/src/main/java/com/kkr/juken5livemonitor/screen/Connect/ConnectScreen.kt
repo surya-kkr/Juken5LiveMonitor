@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.kkr.juken5livemonitor.bluetooth.BluetoothManager
 import com.kkr.juken5livemonitor.bluetooth.BluetoothScanner
+import com.kkr.juken5livemonitor.screen.Connect.components.ConnectionHelpDialog
 import com.kkr.juken5livemonitor.session.BluetoothSession
 import com.kkr.juken5livemonitor.ui.components.GlassBackground
 import com.kkr.juken5livemonitor.ui.components.GlassButton
@@ -31,6 +32,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import androidx.compose.material.icons.rounded.Refresh
+import androidx.compose.material.icons.filled.History
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import android.content.res.Configuration
@@ -81,6 +83,17 @@ fun ConnectScreen(
         mutableStateOf(false)
     }
 
+    var showHelpDialog by remember {
+        mutableStateOf(false)
+    }
+
+    var selectedJukenType by remember {
+        mutableStateOf(
+            context.getSharedPreferences("juken_settings", android.content.Context.MODE_PRIVATE)
+                .getString("selected_juken_type", "Juken 5") ?: "Juken 5"
+        )
+    }
+
     val postNotificationLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestPermission()
     ) { granted ->
@@ -120,6 +133,10 @@ fun ConnectScreen(
         configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 
 
+    if (showHelpDialog) {
+        ConnectionHelpDialog(onDismiss = { showHelpDialog = false })
+    }
+
     GlassBackground {
 
         if (isLandscape) {
@@ -128,14 +145,28 @@ fun ConnectScreen(
                 devices = devices,
                 status = status,
                 isNotificationEnabled = isNotificationAccessGranted && isPostNotificationPermissionGranted,
+                selectedJukenType = selectedJukenType,
+                onJukenTypeChanged = { type ->
+                    selectedJukenType = type
+                    context.getSharedPreferences("juken_settings", android.content.Context.MODE_PRIVATE)
+                        .edit().putString("selected_juken_type", type).apply()
+                },
                 onConnect = { device ->
 
                     connecting = true
                     status = "Connecting..."
 
+                    // Save device address for automatic reconnection during sync
+                    val prefs = context.getSharedPreferences("juken_settings", android.content.Context.MODE_PRIVATE)
+                    prefs.edit().putString("last_device_address", device.address).apply()
+
                     CoroutineScope(Dispatchers.IO).launch {
 
-                        val success = bluetoothManager.connect(device)
+                        val success = if (selectedJukenType == "Juken 5+") {
+                            bluetoothManager.connectPlus(device)
+                        } else {
+                            bluetoothManager.connect(device)
+                        }
 
                         withContext(Dispatchers.Main) {
 
@@ -163,6 +194,9 @@ fun ConnectScreen(
                 onDemoMode = {
                     navController.navigate("monitor_demo")
                 },
+                onViewLogs = {
+                    navController.navigate("log_history")
+                },
                 onRefresh = {
                     val list = scanner.getPairedDevices()
                     Log.d("BT_DEBUG", "Refresh Landscape = ${list.size}")
@@ -170,7 +204,8 @@ fun ConnectScreen(
                 },
                 onGrantNotification = {
                     context.startActivity(Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"))
-                }
+                },
+                onHelpClick = { showHelpDialog = true }
             )
 
         } else {
@@ -184,10 +219,38 @@ fun ConnectScreen(
                 GlassTopBar(
                     connected = status == "Connected",
                     ecuName = "Juken 5 Live Monitor",
-                    subtitle = "By KKR X AG"
+                    subtitle = "By KKR X AG",
+                    onHelpClick = { showHelpDialog = true }
                 )
 
-                Spacer(modifier = Modifier.height(24.dp))
+                Spacer(modifier = Modifier.height(20.dp))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    GlassButton(
+                        text = "JUKEN 5",
+                        modifier = Modifier.weight(1f),
+                        containerColor = if (selectedJukenType == "Juken 5") Color(0xFFE53935) else Color.DarkGray
+                    ) {
+                        selectedJukenType = "Juken 5"
+                        context.getSharedPreferences("juken_settings", android.content.Context.MODE_PRIVATE)
+                            .edit().putString("selected_juken_type", "Juken 5").apply()
+                    }
+
+                    GlassButton(
+                        text = "JUKEN 5+",
+                        modifier = Modifier.weight(1f),
+                        containerColor = if (selectedJukenType == "Juken 5+") Color(0xFFE53935) else Color.DarkGray
+                    ) {
+                        selectedJukenType = "Juken 5+"
+                        context.getSharedPreferences("juken_settings", android.content.Context.MODE_PRIVATE)
+                            .edit().putString("selected_juken_type", "Juken 5+").apply()
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
 
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -267,7 +330,7 @@ fun ConnectScreen(
                     LazyColumn(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(300.dp),
+                            .height(240.dp),
                         verticalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
 
@@ -304,9 +367,17 @@ fun ConnectScreen(
                                     connecting = true
                                     status = "Connecting..."
 
+                                    // Save device address for automatic reconnection during sync
+                                    val prefs = context.getSharedPreferences("juken_settings", android.content.Context.MODE_PRIVATE)
+                                    prefs.edit().putString("last_device_address", device.address).apply()
+
                                     CoroutineScope(Dispatchers.IO).launch {
 
-                                        val success = bluetoothManager.connect(device)
+                                        val success = if (selectedJukenType == "Juken 5+") {
+                                            bluetoothManager.connectPlus(device)
+                                        } else {
+                                            bluetoothManager.connect(device)
+                                        }
 
                                         withContext(Dispatchers.Main) {
 
@@ -393,12 +464,22 @@ fun ConnectScreen(
                 }
                 Spacer(modifier = Modifier.height(20.dp))
 
-
                 GlassButton(
                     text = "DEMO DASHBOARD",
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     navController.navigate("monitor_demo")
+                }
+
+                Spacer(modifier = Modifier.height(10.dp))
+
+                GlassButton(
+                    text = "VIEW HISTORY LOG",
+                    modifier = Modifier.fillMaxWidth(),
+                    icon = Icons.Default.History,
+                    containerColor = Color.DarkGray
+                ) {
+                    navController.navigate("log_history")
                 }
 
             }

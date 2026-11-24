@@ -1,5 +1,5 @@
 [versions]
-agp = "8.10.1"
+agp = "8.13.2"
 kotlin = "2.1.21"
 
 coreKtx = "1.16.0"
@@ -17,6 +17,14 @@ composeBom = "2025.04.01"
 navigationCompose = "2.9.3"
 
 coroutines = "1.8.1"
+
+conscrypt = "2.5.3"
+protobuf = "3.25.1"
+androidxMedia = "1.7.0"
+glide = "4.16.0"
+protobufPlugin = "0.9.4"
+room = "2.8.4"
+ksp = "2.1.21-2.0.1"
 
 [libraries]
 
@@ -47,6 +55,15 @@ androidx-navigation-compose = { group = "androidx.navigation", name = "navigatio
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 
+conscrypt-android = { group = "org.conscrypt", name = "conscrypt-android", version.ref = "conscrypt" }
+protobuf-java = { group = "com.google.protobuf", name = "protobuf-java", version.ref = "protobuf" }
+androidx-media = { group = "androidx.media", name = "media", version.ref = "androidxMedia" }
+glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
+
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -57,3 +74,5 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+protobuf = { id = "com.google.protobuf", version.ref = "protobufPlugin" }
+kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

@@ -38,56 +38,98 @@ class BluetoothManager {
 
     private var listener: ((String) -> Unit)? = null
 
-    @SuppressLint("MissingPermission")
+    private var onDisconnect: (() -> Unit)? = null
 
+    @SuppressLint("MissingPermission")
     fun connect(
         device: BluetoothDevice
     ): Boolean {
-
         return try {
+            // Ensure any previous connection is fully cleared
+            disconnect()
 
-            adapter?.cancelDiscovery()
+            val bluetoothAdapter = adapter
+            checkNotNull(bluetoothAdapter) { "Bluetooth is not supported on this device" }
+            check(bluetoothAdapter.isEnabled) { "Bluetooth is turned off" }
+            check(device.bondState == BluetoothDevice.BOND_BONDED) {
+                "ECU is not paired. Pair it first in Android Bluetooth settings"
+            }
 
-            socket =
-                device.createRfcommSocketToServiceRecord(UUID_SPP)
+            bluetoothAdapter.cancelDiscovery()
+            // Important: Small delay for Xiaomi/Vivo systems to finish cancelDiscovery
+            Thread.sleep(200)
 
-            socket?.connect()
+            Log.d(TAG, "Attempting Secure RFCOMM connection to ${device.address}")
+            socket = device.createRfcommSocketToServiceRecord(UUID_SPP)
+            
+            try {
+                socket?.connect()
+            } catch (e: Exception) {
+                Log.w(TAG, "Secure connection failed, attempting INSECURE fallback...", e)
+                socket?.close()
+                // MIUI needs a moment to release the first RFCOMM attempt before retrying.
+                Thread.sleep(300)
+                
+                // FALLBACK: Insecure socket often bypasses strict MIUI/OriginOS policies
+                socket = device.createInsecureRfcommSocketToServiceRecord(UUID_SPP)
+                try {
+                    socket?.connect()
+                } catch (insecureError: Exception) {
+                    Log.w(
+                        TAG,
+                        "Insecure SPP discovery failed; attempting RFCOMM channel 1 fallback...",
+                        insecureError
+                    )
+                    socket?.close()
+                    Thread.sleep(300)
 
-            input =
-                socket?.inputStream
+                    // Some Redmi/MIUI Bluetooth stacks fail the SPP SDP lookup even for a
+                    // paired ECU. Most SPP ECUs expose their serial service on RFCOMM channel 1.
+                    socket = createRfcommChannelSocket(device, 1)
+                    socket?.connect()
+                }
+            }
 
-            output =
-                socket?.outputStream
+            input = socket?.inputStream
+            output = socket?.outputStream
 
-            Log.d(
-                TAG,
-                "Bluetooth Connected"
-            )
-
-            ECULogger.info(
-                "Bluetooth Connected"
-            )
-
+            Log.i(TAG, "Bluetooth Connected Successfully")
+            ECULogger.info("Bluetooth Connected")
             true
 
         } catch (e: Exception) {
-
-            Log.e(
-                TAG,
-                "Bluetooth Connect Failed",
-                e
-            )
-
-            ECULogger.error(
-                "Bluetooth Connect Failed : ${e.message}"
-            )
-
+            val reason = e.message ?: e.javaClass.simpleName
+            Log.e(TAG, "Bluetooth Connect Failed (all socket methods): $reason", e)
+            ECULogger.error("Bluetooth Connect Failed: $reason")
             disconnect()
-
             false
-
         }
+    }
 
+    /**
+     * Last-resort compatibility path for paired SPP devices whose service-discovery
+     * record is rejected by a vendor Bluetooth stack (seen on some MIUI Android 12 builds).
+     */
+    private fun createRfcommChannelSocket(
+        device: BluetoothDevice,
+        channel: Int
+    ): BluetoothSocket {
+        val method = BluetoothDevice::class.java.getMethod(
+            "createRfcommSocket",
+            Int::class.javaPrimitiveType
+        )
+        return method.invoke(device, channel) as BluetoothSocket
+    }
+
+    @SuppressLint("MissingPermission")
+    fun connectPlus(
+        device: BluetoothDevice
+    ): Boolean {
+        val success = connect(device)
+        if (success) {
+            Log.i(TAG, "Juken 5+ Bluetooth connected")
+        }
+        return success
     }
 
     fun isConnected(): Boolean {
@@ -151,20 +193,19 @@ class BluetoothManager {
     }
 
     fun startListening() {
-
-        if (listening)
-            return
-
+        if (listening) return
         val stream = input ?: return
 
         listening = true
 
         thread(
-            name = "JukenBluetoothReader"
+            name = "JukenBluetoothReader",
+            priority = Thread.MAX_PRIORITY // Give max priority to prevent data stutter on Xiaomi
         ) {
+            // Set Process priority as well for UI responsiveness on aggressive OSes
+            android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_URGENT_AUDIO)
 
-            val buffer = ByteArray(1024)
-
+            val buffer = ByteArray(2048) // Increased buffer size
             val builder = StringBuilder()
 
             while (
@@ -265,8 +306,14 @@ class BluetoothManager {
                 "Reader Finished"
             )
 
+            onDisconnect?.invoke()
+
         }
 
+    }
+
+    fun setOnDisconnectListener(callback: () -> Unit) {
+        onDisconnect = callback
     }
 
     fun stopListening() {

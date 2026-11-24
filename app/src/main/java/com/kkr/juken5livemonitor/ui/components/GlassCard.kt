@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -20,12 +21,13 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun GlassCard(
     modifier: Modifier = Modifier,
+    contentPadding: PaddingValues = PaddingValues(20.dp),
     content: @Composable BoxScope.() -> Unit
 ) {
     val shape = RoundedCornerShape(24.dp)
 
     Card(
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier,
         shape = shape,
         colors = CardDefaults.cardColors(
             containerColor = Color.Transparent
@@ -79,7 +81,7 @@ fun GlassCard(
             )
 
             Box(
-                modifier = Modifier.padding(20.dp),
+                modifier = Modifier.padding(contentPadding),
                 content = content
             )
         }

@@ -34,6 +34,13 @@ object ECUProtocol {
 
     const val ACK = "1A00"
 
+    const val PING = "1B00\r\n"
+
+    const val PING_RESPONSE = "1B01"
+
+    /** Response to the Juken 5+ remote-ready request (1618). */
+    const val REMOTE_READY_HEADER = "9618"
+
     const val LIVE_HEADER = "A603"
 
     const val DIAGNOSTIC_HEADER = "A602"

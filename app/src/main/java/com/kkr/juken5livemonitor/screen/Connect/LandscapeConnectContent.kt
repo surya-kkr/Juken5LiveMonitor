@@ -1,5 +1,6 @@
 package com.kkr.juken5livemonitor.screen.Connect
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -17,19 +18,25 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import com.kkr.juken5livemonitor.ui.components.GlassTopBar
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.History
 import androidx.compose.material.icons.rounded.Refresh
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 
+@SuppressLint("MissingPermission")
 @Composable
 fun LandscapeConnectContent(
     devices: List<BluetoothDevice>,
     status: String,
     isNotificationEnabled: Boolean,
+    selectedJukenType: String,
+    onJukenTypeChanged: (String) -> Unit,
     onConnect: (BluetoothDevice) -> Unit,
     onDemoMode: () -> Unit = {},
+    onViewLogs: () -> Unit = {},
     onRefresh: () -> Unit = {},
-    onGrantNotification: () -> Unit = {}
+    onGrantNotification: () -> Unit = {},
+    onHelpClick: () -> Unit = {}
 ) {
 
     Row(
@@ -52,10 +59,34 @@ fun LandscapeConnectContent(
                     connected = false,
                     ecuName = "Juken 5 Live Monitor",
                     subtitle = "By KKR X AG",
-                    inlineSubtitle = false
+                    inlineSubtitle = false,
+                    onHelpClick = onHelpClick
                 )
 
                 Spacer(modifier = Modifier.height(12.dp))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    GlassButton(
+                        text = "JUKEN 5",
+                        modifier = Modifier.weight(1f),
+                        containerColor = if (selectedJukenType == "Juken 5") Color(0xFFE53935) else Color.DarkGray
+                    ) {
+                        onJukenTypeChanged("Juken 5")
+                    }
+
+                    GlassButton(
+                        text = "JUKEN 5+",
+                        modifier = Modifier.weight(1f),
+                        containerColor = if (selectedJukenType == "Juken 5+") Color(0xFFE53935) else Color.DarkGray
+                    ) {
+                        onJukenTypeChanged("Juken 5+")
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(10.dp))
 
                 GlassCard {
 
@@ -102,14 +133,25 @@ fun LandscapeConnectContent(
 
                 }
 
+                Spacer(modifier = Modifier.height(12.dp))
                 Spacer(modifier = Modifier.weight(1f))
-
 
                 GlassButton(
                     text = "DEMO DASHBOARD",
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     onDemoMode()
+                }
+
+                Spacer(modifier = Modifier.height(10.dp))
+
+                GlassButton(
+                    text = "VIEW HISTORY LOG",
+                    modifier = Modifier.fillMaxWidth(),
+                    icon = Icons.Default.History,
+                    containerColor = Color.DarkGray
+                ) {
+                    onViewLogs()
                 }
 
             }
@@ -164,12 +206,14 @@ fun LandscapeConnectContent(
 
                     items(devices) { device ->
 
-                        GlassCard {
+                        GlassCard(
+                            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 18.dp)
+                        ) {
 
                             Row(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .padding(vertical = 6.dp),
+                                    .padding(vertical = 0.dp),
                                 horizontalArrangement = Arrangement.SpaceBetween,
                                 verticalAlignment = Alignment.CenterVertically
                             )  {

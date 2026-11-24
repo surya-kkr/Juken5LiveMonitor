@@ -5,38 +5,85 @@ import com.kkr.juken5livemonitor.protocol.ECUProtocol
 import com.kkr.juken5livemonitor.protocol.PacketParser
 import com.kkr.juken5livemonitor.session.BluetoothSession
 
-class ECURepository {
+class ECURepository : ReadOnlyEcuRepository {
 
     private val bt
         get() = BluetoothSession.bluetoothManager
 
     private val parser = PacketParser()
 
-    fun isConnected(): Boolean {
+    override fun isConnected(): Boolean {
         return bt?.isConnected() == true
     }
 
-    fun handshake(): Boolean {
-        return bt?.send(ECUProtocol.DIAGNOSTIC) ?: false
+    override fun handshake(): Boolean {
+        return bt?.send(ECUProtocol.GET_VARIABLE) ?: false
     }
 
-    fun openLive(): Boolean {
+    override fun requestModel(): Boolean {
+        return bt?.send(ECUProtocol.GET_MAP) ?: false
+    }
+
+    override fun requestFuelMap(offset: String, chunk: Int): Boolean {
+        return bt?.send("1602;$offset;$chunk\r\n") ?: false
+    }
+
+    override fun requestBaseMap(offset: String, chunk: Int): Boolean {
+        return bt?.send("1601;$offset;$chunk\r\n") ?: false
+    }
+
+    override fun requestInjectorMap(offset: String, chunk: Int): Boolean {
+        return bt?.send("1603;$offset;$chunk\r\n") ?: false
+    }
+
+    override fun requestIgnitionMap(offset: String, chunk: Int): Boolean {
+        return bt?.send("1605;$offset;$chunk\r\n") ?: false
+    }
+
+    override fun requestHistory(chunk: Int): Boolean {
+        return bt?.send("1610;$chunk\r\n") ?: false
+    }
+
+    fun setRawListener(callback: (String) -> Unit) {
+        bt?.setListener(callback)
+    }
+
+    override fun setSyncListener(callback: (String, List<String>) -> Unit) {
+        parser.setSyncListener(callback)
+        // Ensure parser is fed with raw tokens during sync
+        bt?.setListener { token ->
+            parser.parse(token)
+        }
+    }
+
+    override fun setOnDisconnectListener(callback: () -> Unit) {
+        bt?.setOnDisconnectListener(callback)
+    }
+
+    override fun openLive(): Boolean {
         return bt?.send(ECUProtocol.OPEN_LIVE) ?: false
     }
 
-    fun stopLive(): Boolean {
+    override fun stopLive(): Boolean {
         return bt?.send(ECUProtocol.STOP_LIVE) ?: false
+    }
+
+    override suspend fun stopLiveGracefully() {
+        repeat(10) {
+            stopLive()
+            kotlinx.coroutines.delay(100)
+        }
     }
 
     fun execute(): Boolean {
         return bt?.send(ECUProtocol.EXECUTE) ?: false
     }
 
-    fun send(command: String): Boolean {
+    override fun send(command: String): Boolean {
         return bt?.send(command) ?: false
     }
 
-    fun setLiveListener(
+    override fun setLiveListener(
 
         callback: (ECULiveData) -> Unit
 
@@ -54,19 +101,19 @@ class ECURepository {
 
     }
 
-    fun startListening() {
+    override fun startListening() {
 
         bt?.startListening()
 
     }
 
-    fun stopListening() {
+    override fun stopListening() {
 
         bt?.stopListening()
 
     }
 
-    fun disconnect() {
+    override fun disconnect() {
 
         try {
 

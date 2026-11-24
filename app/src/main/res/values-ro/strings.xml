@@ -1,0 +1,597 @@
+<resources>
+    <string name="app_name">Headunit Revived</string>
+    <string name="menu">Meniu</string>
+    <string name="settings">Setări</string>
+
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="dummy_button">Buton de test</string>
+    <string name="dummy_content">CONȚINUT\nDE TEST</string>
+    <string name="allowed">Permis</string>
+    <string name="ignored">Ignorat</string>
+    <string name="exit">Ieșire</string>
+    <string name="video">Android Auto</string>
+    <string name="self_mode">Mod local</string>
+    <string name="to_android_auto">Către Android Auto</string>
+    <string name="title">Headunit Revived</string>
+    <string name="remove">Elimină</string>
+    <string name="usb">USB</string>
+    <string name="wifi">WiFi</string>
+    <string name="dpi">Densitate pixeli (DPI)</string>
+    <string name="mic_sample_rate">Rată eșantionare microfon</string>
+    <string name="keymap">Mapare taste</string>
+    <string name="night_mode">Mod întunecat (Android Auto)</string>
+    <string name="night_mode_threshold">Prag mod de noapte</string>
+    <string name="enter_threshold_value">Introdu valoarea pragului</string>
+    <string name="threshold_lux_desc">Valoare Lux (0–10000). Sub aceasta = Noapte.</string>
+    <string name="threshold_brightness_desc">Luminozitate (0–255). Sub aceasta = Noapte.</string>
+    <string name="threshold_light_title">Sensibilitate la lumină</string>
+    <string name="threshold_brightness_title">Nivel de luminozitate</string>
+    <string name="threshold_light_hint">Modul întunecat se activează când lumina ambientală scade sub acest nivel</string>
+    <string name="threshold_brightness_hint">Modul întunecat se activează când luminozitatea ecranului este sub această valoare. Android raportează luminozitatea ca 0–255, dar intervalul real poate varia în funcție de dispozitiv. Poate fi nevoie să experimentați pentru a găsi pragul potrivit pentru dispozitivul dvs.</string>
+    <string name="current_light_reading">Lumină actuală: %d Lux</string>
+    <string name="enable_fine_lux_control">Control fin (0–100 Lux)</string>
+    <string name="night_mode_start">Oră început mod de noapte</string>
+    <string name="night_mode_end">Oră sfârșit mod de noapte</string>
+
+    <string name="app_theme">Mod întunecat (Aplicație)</string>
+    <string name="app_theme_description">Controlează aspectul vizual al aplicației</string>
+    <string name="change_app_theme">Schimbă tema</string>
+    <string name="use_gradient_background">Folosește fundal degradat</string>
+    <string name="use_gradient_background_description_on">Aplicația desenează propriul fundal cu cercul de degradat centrat</string>
+    <string name="use_gradient_background_description_off">Fundalul clasic al aplicației este utilizat</string>
+    <string name="use_gradient_background_description_on_auto">Aplicația desenează propriul fundal cu cercul de degradat centrat. Nu se aplică modului Întunecat extrem</string>
+    <string name="use_gradient_background_description_off_auto">Fundalul clasic al aplicației este utilizat. Nu se aplică modului Întunecat extrem</string>
+    <string name="category_dark_mode">Mod întunecat</string>
+    <string name="category_automation">Automatizare</string>
+    <string name="dark_mode_settings">Setări mod întunecat</string>
+    <string name="app_theme_short">App</string>
+    <string name="night_mode_short">Android Auto</string>
+    <string name="aa_monochrome">Android Auto monocrom</string>
+    <string name="aa_monochrome_description">Reduce culorile din Android Auto pentru condusul pe timp de noapte. Necesită modul de vizualizare GLES. Are efect doar când modul întunecat este activat</string>
+    <string name="aa_desaturation">Desaturare</string>
+    <string name="aa_desaturation_description">Controlează cât de multă culoare este eliminată. Are efect doar când modul întunecat este activat</string>
+    <string name="gles_required_title">GLES necesar</string>
+    <string name="gles_required_message">Modul monocrom necesită randare GLES pentru a aplica un filtru de tonuri de gri pe ieșirea video. Activezi GLES?</string>
+    <string name="enable_gles">Activează GLES</string>
+    <string name="category_navigation">Navigare</string>
+    <string name="category_wireless">Conexiune wireless</string>
+
+    <string name="reconnection_required_title">Reconectare necesară</string>
+    <string name="reconnection_required_message">Dispozitivul este în așteptare. Te rog să deconectezi și să reconectezi cablul USB pentru a reporni Android Auto.</string>
+
+    <string name="bluetooth_address_s">Adresă Bluetooth</string>
+    <string name="enter_bluetooth_mac">Introdu adresa MAC Bluetooth</string>
+    <string name="reset">Resetează</string>
+    <string name="gps_for_navigation">GPS pentru navigație</string>
+    <string name="gps_for_navigation_description">Folosește GPS-ul pentru navigație</string>
+    <string name="enabled">Activat</string>
+    <string name="disabled">Dezactivat</string>
+    <string name="resolution">Rezoluție</string>
+    <string name="change_resolution">Schimbă rezoluția</string>
+    <string name="change_dpi">Schimbă DPI-ul</string>
+    <string name="change_view_mode">Schimbă modul de vizualizare</string>
+    <string name="view_mode">Mod de vizualizare</string>
+    <string name="surface_view">SurfaceView</string>
+    <string name="texture_view">TextureView</string>
+    <string name="gles_view">GLES20</string>
+    <string name="auto">Auto</string>
+    <string name="screen_orientation">Orientare ecran</string>
+    <string name="change_screen_orientation">Schimbă orientarea ecranului</string>
+    <string name="orientation_system_default">Implicit din sistem</string>
+    <string name="orientation_auto_sensor">Auto (Senzor)</string>
+    <string name="orientation_landscape">Orizontal (0°)</string>
+    <string name="orientation_landscape_reverse">Orizontal inversat (180°)</string>
+    <string name="orientation_portrait">Vertical (90°)</string>
+    <string name="orientation_portrait_reverse">Vertical inversat (270°)</string>
+    <string name="enter_dpi_value">Introdu valoarea DPI (0 pentru auto)</string>
+    <string name="custom_margin">Margini personalizate</string>
+    <string name="custom_margin_description">Setează margini de afișare personalizate (0 pentru auto)</string>
+    <string name="enter_custom_margins">Introdu marginile personalizate (0 pentru auto)</string>
+    <string name="margin_left">Stânga</string>
+    <string name="margin_top">Sus</string>
+    <string name="margin_right">Dreapta</string>
+    <string name="margin_bottom">Jos</string>
+
+    <string name="start_in_fullscreen_mode">Mod ecran</string>
+    <string name="start_in_fullscreen_mode_description">Alege cum vrei să fie afișate barele de sistem (status și navigație).</string>
+    <string name="fullscreen_none">Normal (Toate barele vizibile)</string>
+    <string name="fullscreen_immersive">Imersiv (Toate barele ascunse)</string>
+    <string name="fullscreen_immersive_avoid_notch">Imersiv (Evitare Notch)</string>
+    <string name="fullscreen_immersive_avoid_notch_desc">Ascunde toate barele și adaugă spațiere pentru a preveni acoperirea proiecției de către Notch/Decupaj.</string>
+    <string name="fullscreen_status_only">Ascunde doar bara de status</string>
+
+    <string name="usb_status">Stare USB: %s</string>
+    <string name="projection_status">Stare proiecție: %s</string>
+    <string name="connected">Conectat</string>
+    <string name="disconnected">Deconectat</string>
+    <string name="running">Rulează</string>
+    <string name="not_running">Nu rulează</string>
+    <string name="no_android_auto_device_connected">Niciun dispozitiv Android Auto conectat. Verifică conexiunea USB.</string>
+    <string name="no_usb_device_connected">Niciun dispozitiv USB conectat.</string>
+    <string name="press_back_again_to_exit">Apasă din nou Înapoi pentru a ieși</string>
+    <string name="back">Înapoi</string>
+    <string name="debug_mode">Mod depanare (Debug)</string>
+    <string name="debug_mode_description">Activează loguri detaliate</string>
+    <string name="log_level">Nivel logare</string>
+    <string name="log_level_description">Filtrează nivelul logurilor la export</string>
+    <string name="log_source">Sursă de jurnalizare</string>
+    <string name="log_source_logcat">Logcat</string>
+    <string name="log_source_applog_file">Direct în fișier</string>
+    <string name="start_log_capture">Începe capturarea logurilor</string>
+    <string name="start_log_capture_description">Începe înregistrarea completă a logurilor pentru depanare</string>
+    <string name="start_log_capture_in_applog_file">Mesajele Log sunt scrise într-un fișier doar cât timp captura este activă</string>
+    <string name="start_log_capture_in_silent">Nu se poate începe înregistrarea: nivelul jurnalului Silențios selectat</string>
+    <string name="stop_log_capture">Oprește capturarea logurilor</string>
+    <string name="stop_log_capture_description">Înregistrare în curs… apasă pentru a opri</string>
+    <string name="export_logs">Exportă logurile</string>
+    <string name="export_logs_description">Salvează logurile pentru depanare</string>
+
+
+    <string name="not_set">Nesetat</string>
+    <string name="keymap_description">Schimbă asocierile de taste pentru Headunit</string>
+
+    <string name="key_soft_left">Tastă stânga (Soft)</string>
+    <string name="key_soft_right">Tastă dreapta (Soft)</string>
+    <string name="key_dpad_up">D-Pad Sus</string>
+    <string name="key_dpad_down">D-Pad Jos</string>
+    <string name="key_dpad_left">D-Pad Stânga</string>
+    <string name="key_dpad_right">D-Pad Dreapta</string>
+    <string name="key_dpad_center">D-Pad Centru (OK)</string>
+    <string name="key_media_play">Redare Media</string>
+    <string name="key_media_pause">Pauză Media</string>
+    <string name="key_media_play_pause">Redare/Pauză Media</string>
+    <string name="key_media_next">Piesa următoare</string>
+    <string name="key_media_prev">Piesa anterioară</string>
+    <string name="key_search">Comandă vocală</string>
+    <string name="key_call">Telefon (Acceptare)</string>
+    <string name="key_endcall">Încheiere apel (Respingere)</string>
+    <string name="key_music">Muzică</string>
+    <string name="key_nav">Navigație</string>
+    <string name="key_night">Comută mod noapte</string>
+    <string name="key_enter">Enter</string>
+    <string name="key_home">Acasă</string>
+    <string name="key_app_switch">Aplicații recente</string>
+    <string name="key_button_a">Buton A (Selectare)</string>
+    <string name="key_button_b">Buton B (Înapoi)</string>
+
+
+    <!-- Language Settings -->
+    <string name="app_language">Limba aplicației</string>
+    <string name="system_default">Implicită din sistem</string>
+    <string name="change_language">Schimbă limba</string>
+
+    <!-- Categories for SettingsFragment -->
+    <string name="category_general">Generale</string>
+    <string name="auto_start_self_mode">Pornire automată Mod local</string>
+    <string name="auto_start_self_mode_description">Pornește automat Modul local când se deschide aplicația.</string>
+    <string name="usb_auto_connect">Conectare automată USB</string>
+    <string name="usb_auto_connect_description">Conectează automat un dispozitiv USB cunoscut când deschizi aplicația.</string>
+    <string name="auto_start_bt_label">Pornire automată pe Bluetooth</string>
+    <string name="auto_start_bt_description">Deschide automat Headunit Revived când se conectează un anumit dispozitiv Bluetooth.</string>
+    <string name="auto_start_wifi_label">Pornire automată pe WiFi</string>
+    <string name="auto_start_wifi_description">Deschide automat Headunit Revived când se conectează la un SSID WiFi specific.</string>
+    <string name="auto_start_wifi_ssid_label">SSID WiFi</string>
+    <string name="auto_start_wifi_ssid_description">Conectează doar dacă este asociat cu acest SSID WiFi</string>
+    <string name="auto_start_wifi_warning">Funcție legacy: S-ar putea să nu funcționeze fiabil pe Android 8+ din cauza restricțiilor de fundal. Asigură-te că aplicația este exclusă de la optimizarea bateriei.</string>
+    <string name="enter_wifi_ssid">Introdu SSID WiFi</string>
+    <string name="wifi_ssid_not_set">Nesetat</string>
+
+    <string name="listen_for_usb_devices_label">Ascultați dispozitive USB</string>
+    <string name="listen_for_usb_devices_description">Afișați solicitarea sistemului Android când este conectat un dispozitiv USB.</string>
+    <string name="show_toast_messages">Afișează mesaje Toast</string>
+    <string name="show_toast_messages_description">Afișează mesaje pop-up de stare la conectare, deconectare și schimbarea modului.</string>
+    <string name="auto_start_usb_label">Pornire automată pe USB</string>
+    <string name="auto_start_usb_description">Deschide aplicația automat și încearcă conectarea când un dispozitiv USB este conectat</string>
+    <string name="auto_start_settings">Setări pornire automată</string>
+    <string name="auto_start_settings_description">Configurează când aplicația pornește automat</string>
+    <string name="auto_start_oem_warning">Acest dispozitiv poate necesita activarea pornirii automate și eliminarea optimizării bateriei sau a restricțiilor de fundal pentru această aplicație.\n\nPe unitățile cu Quick Boot (pornire rapidă), pornirea automată ar putea să nu funcționeze. Căutați \"DuraSpeed\" în setările de sistem și activați această aplicație acolo. Pe unele unități, DuraSpeed este ascuns și este posibil să aveți nevoie de o aplicație precum \"Hidden Settings\" pentru a-l găsi. Dacă nu aveți DuraSpeed, încercați să dezactivați Quick Boot.</string>
+    <string name="auto_start_on_boot_label">Pornire la boot</string>
+    <string name="auto_start_on_boot_description">Deschide aplicația automat când dispozitivul pornește. Necesită permisiunea \'Afișare peste alte aplicații\' pe Android 10+</string>
+    <string name="auto_start_screen_on_label">Pornire la aprinderea ecranului</string>
+    <string name="auto_start_screen_on_description">Deschide aplicația de fiecare dată când ecranul se aprinde. Ideal pentru unitățile auto care nu se opresc niciodată complet sau folosesc moduri de pornire rapidă unde celelalte opțiuni de pornire automată nu funcționează. Nu este recomandat pentru telefoane sau tablete.</string>
+    <string name="select_bt_device">Selectează dispozitivul Bluetooth</string>
+    <string name="bt_device_not_set">Nesetat</string>
+    <string name="bt_permission_denied_title">Permisiune Bluetooth necesară</string>
+    <string name="bt_permission_denied_message">E nevoie de permisiunea Bluetooth pentru a selecta dispozitivele asociate. Te rog să o acorzi din setările aplicației.</string>
+    <string name="overlay_permission_title">Permisiune pornire în fundal</string>
+    <string name="overlay_permission_description">Pentru a lăsa Headunit Revived să se deschidă automat la conectarea Bluetooth-ului, activează permisiunea \"Afișare peste alte aplicații\" în ecranul următor.</string>
+    <string name="open_settings">Setări</string>
+    <string name="wireless_connection_settings">Conexiune wireless</string>
+    <string name="right_hand_drive">Volan pe dreapta</string>
+    <string name="right_hand_drive_description">Poziționează interfața (UI) pentru volan pe dreapta</string>
+    <string name="category_graphic">Grafică</string>
+    <string name="custom_insets">Margini interfață (Insets)</string>
+    <string name="inset_top">Sus</string>
+    <string name="inset_bottom">Jos</string>
+    <string name="inset_left">Stânga</string>
+    <string name="inset_right">Dreapta</string>
+    <string name="category_debug">Depanare</string>
+
+    <!-- Video Settings -->
+    <string name="category_video">Video</string>
+    <string name="force_software_decoding">Forțează decodarea software</string>
+    <string name="force_software_decoding_description">Poate repara probleme pe unele dispozitive, dar scade performanța</string>
+    <string name="wireless_mode">Mod Wireless</string>
+    <string name="wireless_mode_description">Alege cum se conectează aplicația wireless (Listă manuală, Căutare automată sau Asistent Wireless)</string>
+    <string-array name="wireless_connection_modes">
+        <item>Manual (Listă)</item>
+        <item>Căutare automată (Server Headunit)</item>
+        <item>Asistent Wireless (Așteaptă telefonul)</item>
+        <item>Native Android Auto</item>
+    </string-array>
+    <string name="auto_connect_last_session">Conectare automată la ultima sesiune</string>
+    <string name="auto_connect_last_session_description">Reconectează automat ultimul dispozitiv la pornirea aplicației</string>
+    <string name="auto_connect_single_usb">Conectare automată dispozitiv USB</string>
+    <string name="auto_connect_single_usb_description">Se conectează automat când ai un singur dispozitiv compatibil disponibil</string>
+    <string name="auto_connect_settings">Setări conectare automată</string>
+    <string name="auto_connect_settings_description">Configurează metodele de conectare automată și ordinea lor de prioritate</string>
+    <string name="auto_connect_help">Aceste metode rulează automat la deschiderea aplicației. Activează-le pe cele dorite, apoi trage de ele pentru a le ordona. Se va folosi prima metodă reușită.</string>
+    <string name="auto_connect_priority">Prioritate %d</string>
+    <string name="auto_connect_all_disabled">Toate dezactivate</string>
+    <string name="drag_to_reorder">Trage pentru a reordona</string>
+    <string name="move_up">Mută mai sus</string>
+    <string name="move_down">Mută mai jos</string>
+    <string name="auto_connecting_single_usb">Se conectează automat la USB…</string>
+    <string name="video_codec">Codec Video</string>
+    <string name="fps_limit">Limită FPS</string>
+    <string name="save">Salvează</string>
+    <string name="save_and_restart">Salvează (Necesită reconectare)</string>
+    <string name="add_new">Adaugă nou</string>
+    <string name="cancel">Anulează</string>
+    <string name="enable">Activează</string>
+    <string name="pref_stretch_screen_title">Întindere pentru a umple ecranul</string>
+    <string name="pref_stretch_screen_summary">Ignoră raportul de aspect pentru a umple întregul afișaj (elimină barele negre)</string>
+
+    <!-- Audio Settings -->
+    <string name="forced_scale">Scalare forțată (Fix legacy)</string>
+    <string name="forced_scale_description">Corectează problemele de scalare pe unele dispozitive mai vechi care folosesc SurfaceView. Utilizați numai dacă imaginea pare distorsionată sau deplasată.</string>
+    <string name="hud_mirroring">Mod HUD (Oglindire orizontală)</string>
+    <string name="hud_mirroring_description">Răstoarnă afișajul pe orizontală pentru reflexia pe parbriz (Head-Up Display). Necesită modul de vizualizare TextureView sau GLES20 (nu funcționează cu SurfaceView).</string>
+
+    <string name="category_audio">Audio</string>
+    <string name="enable_audio_sink">Receptor Audio (Sink)</string>
+    <string name="enable_audio_sink_description">Dacă dezactivezi asta, playerul nu va primi semnal audio. Sunetul se va auzi din telefon.</string>
+    <string name="separate_audio_streams">Fluxuri audio separate</string>
+    <string name="separate_audio_streams_description">Se separă canalele audio pentru muzică, apeluri și notificări în locul unui singur flux multimedia (s-ar putea să nu funcționeze corect pe anumite dispozitive).</string>
+    <string name="use_aac_audio">Folosește Audio AAC</string>
+    <string name="use_aac_audio_description">Folosește codecul AAC pentru audio pentru a salva lățime de bandă (Experimental).</string>
+    <string name="audio_volume_offset">Ajustare volum audio</string>
+    <string name="media_volume_offset">Ajustare volum media</string>
+    <string name="assistant_volume_offset">Ajustare volum asistent</string>
+    <string name="navigation_volume_offset">Ajustare volum navigație</string>
+    <string name="mic_input_source">Sursa microfonului</string>
+    <string name="mic_input_source_description">Alege de unde își ia microfonul sunetul.</string>
+    <string-array name="mic_input_sources">
+        <item>Implicită</item>
+        <item>Microfon</item>
+        <item>Recunoaștere vocală</item>
+        <item>Comunicații vocale</item>
+        <item>Cască Bluetooth (SCO)</item>
+    </string-array>
+
+    <!-- Info Settings -->
+    <string name="category_info">Informații</string>
+    <string name="about">Despre &amp; Suport</string>
+    <string name="about_description">Află mai multe despre Headunit Revived</string>
+    <string name="version">Versiune</string>
+    <string name="about_title">Despre Headunit Revived</string>
+    <string name="copyright">© 2025-%d André Rinas</string>
+
+    <!-- Safety Disclaimer -->
+    <string name="disclaimer_title">Siguranță &amp; Răspundere</string>
+    <string name="disclaimer_header">Avertisment Important</string>
+    <string name="disclaimer_accept">Înțeleg și sunt de acord</string>
+    <string name="disclaimer_text"><![CDATA[
+        <b>1. Concentrează-te la drum</b><br/>
+        Folosirea acestui software la volan îți poate distrage atenția și e periculoasă. Pune mereu pe primul loc condusul preventiv și respectă regulile de circulație. Folosește aplicația doar când poți face asta în siguranță.<br/><br/>
+        <b>2. Limitarea răspunderii</b><br/>
+        Headunit Revived este oferit "ca atare", fără nicio garanție. Dezvoltatorii nu își asumă răspunderea pentru accidente, daune ale mașinii/telefonului sau probleme legale apărute din folosirea acestui software.<br/><br/>
+        <b>3. Fără afiliere</b><br/>
+        Acest proiect este independent, open-source și nu este asociat, sponsorizat sau conectat în niciun fel cu Google LLC sau brandul Android Auto.
+    ]]></string>
+
+    <!-- Toast Messages -->
+    <string name="searching">Se caută…</string>
+    <string name="auto_connecting_to">Se conectează automat la %s…</string>
+    <string name="auto_connecting_usb">Se conectează automat la USB…</string>
+    <string name="already_connected">Ești deja conectat</string>
+    <string name="already_scanning">Se scanează deja…</string>
+    <string name="searching_headunit_server">Se caută serverul Headunit…</string>
+    <string name="already_searching_phone">Se caută deja telefonul…</string>
+    <string name="searching_phone">Se caută telefonul…</string>
+    <string name="key_mappings_reset">Asocierile de taste au fost resetate</string>
+    <string name="press_key_to_assign">Apasă o tastă pentru a o asocia la \'%s\'…</string>
+    <string name="key_assigned">\'%1$s\' a fost asociat la \'%2$s\'</string>
+    <string name="last_key_press">Ultima tastă apăsată: %1$s (%2$d)</string>
+    <string name="scan">Scanează</string>
+    <string name="scanning_network">Se scanează rețeaua…</string>
+    <string name="found_connecting">S-a găsit %s, se conectează…</string>
+    <string name="no_devices_found">Niciun dispozitiv găsit</string>
+    <string name="unsaved_changes">Modificări nesalvate</string>
+    <string name="unsaved_changes_message">Ai modificări nesalvate. Vrei să renunți la ele?</string>
+    <string name="discard">Renunță</string>
+    <string name="stopping_service">Se oprește serviciul pentru a aplica schimbările…</string>
+    <string name="settings_saved">Setări salvate</string>
+    <string name="logs_exported">Loguri exportate</string>
+    <string name="log_saved_to">Log salvat în:\n%s</string>
+    <string name="share">Distribuie</string>
+    <string name="close">Închide</string>
+    <string name="failed_export_logs">Exportul logurilor a eșuat</string>
+    <string name="failed_export_in_silent_logs">Nu se pot exporta jurnalele: nivelul jurnalului Silențios selectat</string>
+    <string name="switching_to_android_auto">Se trece la Android Auto…</string>
+    <string name="switch_failed">Trecerea a eșuat</string>
+    <string name="requesting_usb_permission">Se cere permisiunea USB…</string>
+    <string name="enter_ip_address">Introdu adresa IP</string>
+    <string name="switching_usb_accessory_mode">Se trece dispozitivul USB în modul accesoriu %s</string>
+    <string name="success">Succes</string>
+    <string name="failed">Eșuat</string>
+    <string name="failed_start_android_auto">Pornirea Android Auto a eșuat</string>
+    <string name="failed_self_mode_android10">Modul Self-mode este probabil blocat de Google pe Android 10 (AA 16.4+). Vezi README.</string>
+    <string name="android_auto_starting">Android Auto pornește…</string>
+    <string name="connection_interrupted">Conexiune pierdută</string>
+    <string name="connection_interrupted_detail">Se reîncearcă…</string>
+    <string name="wifi_disconnect_toast">Android Auto deconectat: Dacă folosiți AA wireless, dezactivați \"Comutare între rețele\" sau \"Accelerare rețea\" în setările WiFi ale telefonului</string>
+    <string name="reset_usb_option">Resetează conexiunea USB</string>
+    <string name="reset_usb_timeout">Dispozitivul USB nu a fost găsit. Verifică conexiunea.</string>
+    <string name="notification_service_running">Headunit Revived rulează</string>
+    <string name="notification_projection_active">Android Auto este proiectat</string>
+    <string name="shortcut_connect_title">Conectare</string>
+    <string name="shortcut_connect_desc">Conectează ultimul dispozitiv știut</string>
+    <string name="shortcut_disconnect_title">Deconectare</string>
+    <string name="shortcut_disconnect_desc">Oprește sesiunea curentă</string>
+    <string name="shortcut_exit_title">Închide aplicația</string>
+    <string name="shortcut_exit_desc">Opriți toate serviciile și închideți aplicația</string>
+    <string name="shortcut_night_mode_auto_title">Mod: Auto</string>
+    <string name="shortcut_night_mode_auto_desc">Revino la modul de noapte automat</string>
+    <string name="shortcut_night_mode_day_title">Mod: Zi</string>
+    <string name="shortcut_night_mode_day_desc">Forțează modul de zi</string>
+    <string name="shortcut_night_mode_night_title">Mod: Noapte</string>
+    <string name="shortcut_night_mode_night_desc">Forțează modul de noapte</string>
+    <string name="setup_welcome_title">Configurare rapidă</string>
+    <string name="setup_welcome_msg">Acest asistent te ajută să alegi cele mai bune setări pentru o experiență Android Auto fluidă.\n\nPoți schimba oricând aceste setări mai târziu sau poți reporni asistentul din setările aplicației.</string>
+    <string name="setup_start">Start</string>
+    <string name="setup_size_title">Mărime ecran</string>
+    <string name="setup_size_phone">Telefon / Mic (4-6\")</string>
+    <string name="setup_size_small">Tabletă mică (7-8\")</string>
+    <string name="setup_size_standard">Standard (9-10\")</string>
+    <string name="setup_size_large">Mare (11\"+)</string>
+    <string name="setup_orientation_title">Orientare dispozitiv</string>
+    <string name="setup_orientation_landscape">Peisaj (Orizontal)</string>
+    <string name="setup_orientation_portrait">Portret (Vertical)</string>
+    <string name="setup_result_title">Optimizare terminată</string>
+    <string name="setup_apply">Aplică</string>
+    <string name="setup_widescreen_detected">S-a detectat un ecran lat (widescreen).</string>
+    <string name="auto_optimize">Optimizează automat setările</string>
+    <string name="auto_optimize_desc">Rulează verificarea sistemului pentru a găsi cele mai bune setări pentru dispozitivul tău.</string>
+
+    <!-- Navigation notifications -->
+    <string name="show_navigation_notifications">Notificări de navigare</string>
+    <string name="show_navigation_notifications_description">Afișează „Peste X metri Y\" și strada curentă în notificări (pentru depanare)</string>
+    <string name="nav_notification_channel_name">Navigare</string>
+    <string name="nav_notification_channel_description">Instrucțiuni pas cu pas de la Android Auto</string>
+    <string name="nav_notification_title_format">Peste %1$d m — %2$s</string>
+    <string name="nav_notification_street_format">Strada: %1$s</string>
+    <string name="nav_action_unknown">Acțiune</string>
+    <string name="nav_action_depart">Plecare</string>
+    <string name="nav_action_name_change">Schimbare nume</string>
+    <string name="nav_action_slight_turn">Virare ușoară</string>
+    <string name="nav_action_turn">Virare</string>
+    <string name="nav_action_sharp_turn">Virare bruscă</string>
+    <string name="nav_action_uturn">Întoarcere</string>
+    <string name="nav_action_on_ramp">Rampă de intrare</string>
+    <string name="nav_action_off_ramp">Rampă de ieșire</string>
+    <string name="nav_action_merge">Contopire</string>
+    <string name="nav_action_roundabout_enter">Intrare în sens giratoriu</string>
+    <string name="nav_action_roundabout_exit">Ieșire din sens giratoriu</string>
+    <string name="nav_action_roundabout">Sens giratoriu</string>
+    <string name="nav_action_straight">Înainte</string>
+    <string name="nav_action_ferry">Feribot</string>
+    <string name="nav_action_ferry_train">Feribot / tren</string>
+    <string name="nav_action_destination">Sosire</string>
+    <string name="monochrome_icons">Pictograme monocrome</string>
+    <string name="monochrome_icons_description">Utilizați pictograme în tonuri de gri pe ecranul principal în modul Întunecat sau Negru extrem</string>
+    <string name="use_extreme_dark">Folosiți negru extrem</string>
+    <string name="use_extreme_dark_description">Utilizați fundal negru pur când modul întunecat este activ</string>
+    <string name="show_fps_counter">Afișează contor FPS</string>
+    <string name="overlay_permission_required">Pornirea automată necesită permisiunea \'Afișare peste alte aplicații\'</string>
+    <string name="usb_permission_denied">Permisiunea USB a fost refuzată. Vă rugăm să permiteți accesul USB pentru conectare automată.</string>
+    <string name="overlay_permission_denied_auto_start_disabled">Permisiunea de suprapunere nu a fost acordată. Pornirea automată a fost dezactivată.</string>
+    <string name="use_white_background">Folosește fundal alb pe ecranul principal</string>
+    <string name="reopen_on_reconnection_label">Redeschide la reconectare</string>
+    <string name="reopen_on_reconnection_description">Când apăsați butonul Ieșire, aplicația continuă să ruleze în fundal și monitorizează conexiunile USB. Dacă un dispozitiv se reconectează, aplicația se redeschide automat.</string>
+    <string name="show_fps_counter_description">Afișează un overlay cu FPS în timp real în colțul din stânga sus în timpul proiecției.</string>
+
+    <string name="category_input">Setări intrare</string>
+    <string name="enable_rotary">Activează controlerul rotativ (Rotary)</string>
+    <string name="enable_rotary_description">Anunță suportul pentru butoane și rotițe rotative fizice. Dezactivează această opțiune dacă ecranul tactil nu funcționează corect.</string>
+    <string name="kill_on_disconnect">Închide aplicația la deconectare</string>
+    <string name="kill_on_disconnect_description">Închide automat aplicația când Android Auto se deconectează</string>
+    <string name="kill_on_disconnect_warning_title">Avertisment</string>
+    <string name="kill_on_disconnect_warning">Următoarele setări de reconectare vor intra în conflict cu închiderea aplicației la deconectare:\n\n%1$s\n\nSetările de conectare inițială (conectare automată, pornire automată) vor funcționa în continuare la pornirea unității. Cu toate acestea, după prima deconectare aplicația se va închide imediat în loc să încerce reconectarea.\n\nNotă: Unele unități aftermarket nu se opresc complet niciodată — intră în hibernare, similar unui telefon care își blochează ecranul dar nu se oprește niciodată cu adevărat. Cu această opțiune activată, aplicația se va închide după prima deconectare și este posibil să nu se redeschidă automat la următoarea pornire.\n\nDoriți să dezactivați setările de reconectare menționate mai sus?</string>
+    <string name="kill_on_disconnect_disable_and_enable">Dezactivează și activează</string>
+    <string name="kill_on_disconnect_enable_anyway">Activează oricum</string>
+    <string name="kill_on_disconnect_boot_warning">Aveți \"Pornire la boot\" activat. Dacă aplicația se închide la deconectare și acest dispozitiv intră în hibernare în loc să se oprească, aplicația s-ar putea să nu se redeschidă automat la următorul ciclu de pornire deoarece nu este generat un eveniment de boot — dispozitivul pur și simplu se trezește din modul de repaus.</string>
+    <string name="kill_on_disconnect_screen_on_warning">Aveți \"Pornire la aprinderea ecranului\" activată. Această setare deschide aplicația de fiecare dată când ecranul se aprinde. Combinată cu închiderea la deconectare, aplicația se va închide după deconectare, dar se va redeschide imediat când ecranul se aprinde din nou, creând o buclă de repornire.</string>
+    <string name="kill_on_disconnect_conflicts_disabled">Setările conflictuale au fost dezactivate</string>
+    <string name="wifi_disabled_info">Info: Wi-Fi este dezactivat.</string>
+    <string name="bt_not_enabled">Info: Bluetooth este dezactivat.</string>
+
+    <!-- Vehicle Info Settings -->
+    <string name="vehicle_info_settings">Informații vehicul</string>
+    <string name="vehicle_info_settings_description">Personalizați cum apare vehiculul dvs. pe telefon</string>
+    <string name="ui_scale">Scală UI</string>
+    <string name="ui_scale_home">Ecran principal</string>
+    <string name="ui_scale_settings">Ecranul de setări</string>
+    <string name="category_vehicle">Vehicul</string>
+    <string name="category_head_unit">Unitate principală</string>
+    <string name="vehicle_display_name_label">Nume afișat</string>
+    <string name="vehicle_display_name_description">Numele afișat pe telefon pentru acest vehicul</string>
+    <string name="vehicle_make_label">Producător</string>
+    <string name="vehicle_make_description">Producătorul vehiculului (ex. Honda, Toyota)</string>
+    <string name="vehicle_model_label">Model</string>
+    <string name="vehicle_model_description">Modelul vehiculului (ex. Civic, Corolla)</string>
+    <string name="vehicle_year_label">An</string>
+    <string name="vehicle_year_description">Anul vehiculului</string>
+    <string name="vehicle_id_label">ID vehicul</string>
+    <string name="vehicle_id_description">Doar identificator intern. Schimbarea acestuia va face ca telefonul dvs. să detecteze acesta ca un vehicul diferit, resetând preferințele Android Auto pentru această mașină.</string>
+    <string name="head_unit_make_label">Producător</string>
+    <string name="head_unit_make_description">Producătorul unității principale</string>
+    <string name="head_unit_make_hint">Telefonul dvs. afișează acest nume în setările Android Auto.</string>
+    <string name="head_unit_model_label">Model</string>
+    <string name="head_unit_model_description">Modelul unității principale</string>
+    <string name="vehicle_year_error_invalid">Introduceți un an valid</string>
+    <string name="vehicle_year_error_max">Anul nu poate fi mai târziu de %1$d</string>
+    <string name="vehicle_info_restart_note">Aceste date sunt trimise către Android Auto de fiecare dată când vă conectați.</string>
+    <string name="auto_enable_hotspot">Activare automată hotspot</string>
+    <string name="auto_enable_hotspot_description">Activează automat un hotspot Wi-Fi pe acest dispozitiv. (Nu va funcționa pe toate dispozitivele)</string>
+    <string name="hotspot_warning_title">Funcție experimentală</string>
+    <string name="hotspot_warning_message">Această funcție folosește reflexie și este posibil să nu funcționeze pe toate dispozitivele. Este posibil să fie nevoie să acordați manual permisiunea \"Modificare setări de sistem\".</string>
+    <string name="hotspot_permission_title">Permisiune necesară</string>
+    <string name="hotspot_permission_message">Funcția de hotspot necesită permisiunea \"Modificare setări de sistem\". Vă rugăm să o activați pe ecranul următor.</string>
+
+    <string name="not_supported_nativeaa">Conexiunea Wireless Nativă pare să nu fie suportată</string>
+    <string name="not_supported_nativeaa_desc">Este posibil ca dispozitivul tău să nu suporte funcțiile Bluetooth sau Wi-Fi necesare pentru Wireless Nativ. Poți încerca oricum, dar dacă nu reușești, te rugăm să folosești modul „Wireless Helper” sau „Auto (Headunit Server)”.</string>
+    <string name="shortcut_selfmode_title">Mod Self</string>
+    <string name="shortcut_selfmode_desc">Pornește Android Auto pe acest dispozitiv</string>
+    <string name="wait_for_wifi">Așteaptă WiFi înainte de WiFi Direct</string>
+    <string name="wait_for_wifi_description">La pornire, așteaptă conectarea WiFi înainte de a porni WiFi Direct. Util dacă headunit-ul tău are nevoie de câteva secunde pentru a se conecta la WiFi după pornire.</string>
+    <string name="wait_for_wifi_timeout">Limita de așteptare WiFi</string>
+    <string name="wireless_24ghz_warning">Notă: Android Auto wireless pe dispozitive de 2,4 GHz poate duce la întârzieri, sacadări și deconectări. Dacă întâmpinați probleme, vă rugăm să testați prin USB pentru a confirma dacă este o limitare a rețelei.</string>
+    <string name="supported_nativeaa">Suport wireless îmbunătățit</string>
+    <string name="supported_nativeaa_desc">Vești bune! Dispozitivul tău suportă modul „Native Wireless”, care oferă o experiență Android Auto mai fluidă. \n\nPentru a-l activa, trebuie să reîmprospătăm cache-ul Bluetooth. Te rugăm să: \n1. Elimini asocierea existentă pe telefon \n2. Dai clic pe OK pentru a reporni Bluetooth \n3. Reasociezi telefonul \n\nDorești să treci acum la modul Native AA?</string>
+    <string name="fake_speed_title">Dezactivează blocarea video (Fake Speed)</string>
+    <string name="fake_speed_description">Raportează telefonului o viteză redusă constantă (0,5 m/s) pentru a preveni blocarea conținutului video în timpul conducerii. Utilizați cu prudență.</string>
+    <string name="wireless_mode_helper">Wireless Helper</string>
+    <string name="wireless_mode_native">Nativ</string>
+    <string name="wireless_mode_server">Headunit Server</string>
+    <string name="server_mode_label">Mod Server</string>
+    <string name="server_mode_manual">Manual</string>
+    <string name="server_mode_auto">Auto</string>
+
+    <string name="helper_strategy_label">Metoda de conectare Helper</string>
+    <string-array name="helper_strategies">
+        <item>WiFi Comun (NSD)</item>
+        <item>WiFi Direct (P2P)</item>
+        <item>Dispozitive în apropiere (Beta)</item>
+        <item>Hotspot telefon (Host)</item>
+        <item>Hotspot unitate (Pasiv)</item>
+    </string-array>
+
+    <string name="select_nearby_device">Selectează dispozitiv în apropiere</string>
+    <string name="nearby_device_found">Dispozitiv în apropiere găsit</string>
+    <string name="connecting_to_nearby">Conectare la %s…</string>
+
+    <string name="exit_dialog_title">Ieșire din Android Auto</string>
+    <string name="exit_dialog_stop">Oprește conexiunea</string>
+    <string name="exit_dialog_pip">Picture-in-Picture (PiP)</string>
+    <string name="exit_dialog_background">Mută în fundal</string>
+    <string name="gesture_hint">Sugestie: Glisează cu 2 degete de la marginea stângă pentru a deschide meniul de ieșire.</string>
+    <string name="audio_latency_multiplier">Multiplicator latență audio</string>
+    <string name="audio_latency_multiplier_description">Ajustare dimensiune buffer audio (Mai mic = latență mai mică, Mai mare = mai puține întreruperi)</string>
+    <string name="audio_queue_capacity">Capacitate coadă audio (Backpressure)</string>
+    <string name="media_action_previous">Anterior</string>
+    <string name="media_action_play">Redare</string>
+    <string name="media_action_pause">Pauză</string>
+    <string name="media_action_next">Următor</string>
+    <string name="media_session_aa_status_placeholder">Conectat</string>
+    <string name="sync_media_session_aa_metadata">Piesa curentă AA în sesiunea media</string>
+    <string name="sync_media_session_aa_metadata_description">Afișează titlul piesei, artistul, durata și coperta albumului de pe telefon în sesiunea media a sistemului și în notificarea media</string>
+    <string name="error_usb_permission_failed">Eroare de sistem: Nu s-a putut solicita caseta de dialog pentru permisiunea USB.</string>
+
+    <!-- Custom loading screen -->
+    <string name="loading_screen">Ecran de încărcare</string>
+    <string name="loading_screen_default">Implicit</string>
+    <string name="loading_screen_custom">Personalizat</string>
+    <string name="loading_screen_dialog_title">Ecran de încărcare personalizat</string>
+    <string name="loading_screen_select_file">Selectează fișier</string>
+    <string name="loading_screen_remove">Elimină</string>
+    <string name="loading_screen_recommendation">Rezoluție recomandată: %1$dx%2$d</string>
+    <string name="loading_screen_supported_formats">Suportate: Imagini (PNG, JPG, BMP, WEBP, GIF) \u2022 Video (MP4, MKV, WEBM, 3GP) \u2022 Max: 10 MB</string>
+    <string name="loading_screen_no_media">Niciun conținut personalizat selectat</string>
+    <string name="loading_screen_file_too_large">Fișierul este prea mare (max 10 MB)</string>
+    <string name="loading_screen_unsupported_format">Format neacceptat. Utilizați un fișier imagine sau video</string>
+    <string name="loading_screen_file_error">Nu s-a putut încărca fișierul selectat</string>
+    <string name="loading_screen_show_text">Afișează textul \"Android Auto pornește\"</string>
+    <string name="loading_screen_tap_preview">Atingeți pentru previzualizare</string>
+    <string name="loading_screen_tap_to_close">Atingeți oriunde pentru a închide</string>
+    <string name="loading_screen_keep_aspect_ratio">Păstrează raportul de aspect</string>
+    <string name="loading_screen_scale">Scalare</string>
+    <string name="loading_screen_recommended_aspect_ratio">Raport de aspect recomandat: %1$d:%2$d</string>
+    <string name="loading_screen_tap_fullscreen_hint">Atingeți previzualizarea pentru a o vedea pe tot ecranul</string>
+    <string name="loading_screen_loop_video">Repetă animațiile scurte în buclă</string>
+    <string name="microphone_settings">Setări microfon</string>
+    <string name="microphone_settings_description">Configurați intrarea microfonului și procesarea audio.</string>
+    <string name="mic_echo_canceler">Anularea ecoului (AEC)</string>
+    <string name="mic_echo_canceler_description">Încearcă să elimine ecoul din microfon. Dezactivați dacă întâmpinați tăcere sau distorsiuni.</string>
+    <string name="mic_noise_suppressor">Suprimarea zgomotului (NS)</string>
+    <string name="mic_noise_suppressor_description">Încearcă să reducă zgomotul de fundal. Dezactivați dacă vocea dvs. sună înfundat.</string>
+    <string name="mic_auto_gain_control">Control automat al amplificării (AGC)</string>
+    <string name="mic_auto_gain_control_description">Reglează automat volumul microfonului. Dezactivați dacă volumul este instabil.</string>
+    <string name="mic_feature_unsupported">Această funcție nu este acceptată pe dispozitivul dvs.</string>
+    <string name="bt_permission_denied">Permisiunea Bluetooth a fost refuzată. Nu se pot scana dispozitive.</string>
+    <string name="wifi_autostart_title">Pornire automată WiFi</string>
+    <string name="wifi_autostart_content">Conectat la %s. Atingeți pentru a porni Android Auto.</string>
+
+    <!-- New strings merged from 2.3.1 -->
+    <string name="bt_devices_selected">dispozitive selectate</string>
+    <string name="static_audio_focus">Focus audio static</string>
+    <string name="static_audio_focus_description">Forțează telefonul să creadă că focusul audio este menținut mereu, prevenind pierderile de rutare audio pe unitățile auto generice. De asemenea, efectuează atenuarea volumului prin software (ducking) în timpul instrucțiunilor vocale de navigare.</string>
+    <string name="bluetooth_adapter_label">Adaptor Bluetooth</string>
+    <string name="bluetooth_adapter_description">Selectați adaptorul/controlerul Bluetooth de utilizat pentru handshake. Util pentru sistemele cu Bluetooth dual.</string>
+    <string name="select_bt_adapter">Selectați adaptorul Bluetooth</string>
+    <!-- QR Code Generator -->
+    <string name="share_hotspot_qr_title">Configurare Wireless Helper</string>
+    <string name="share_hotspot_qr_desc">Afișează codul QR pentru conectarea automată a telefonului</string>
+    <string name="hotspot_qr_description">Cod QR de configurare Wireless Helper</string>
+    <string name="scan_with_wireless_helper">Scanează acest cod QR folosind scanerul QR din Wireless Helper pe telefonul tău.</string>
+    <string name="share_hotspot_qr_error">Nu s-au putut prelua acreditările hotspot-ului Wi-Fi activ. Asigură-te că hotspot-ul este pornit și locația este activată.</string>
+
+    <!-- Brightness, quick settings, key back, backup, wireless helper QR -->
+    <string name="current_brightness_reading">Luminozitate curentă: %d / 255</string>
+    <string name="exit_dialog_settings">Setări rapide</string>
+    <string name="key_back">Înapoi</string>
+    <string name="category_backup">Copie de rezervă</string>
+    <string name="export_settings">Exportă setările</string>
+    <string name="export_settings_description">Salvează o copie de rezervă a setărilor ca fișier JSON</string>
+    <string name="export_settings_app_folder">Salvează în folderul de copii al aplicației</string>
+    <string name="export_settings_downloads">Salvează în Descărcări</string>
+    <string name="export_settings_choose_location">Alege locația de salvare</string>
+    <string name="settings_exported">Setări exportate</string>
+    <string name="settings_export_failed">Exportul setărilor a eșuat: %1$s</string>
+    <string name="settings_backup_saved_to">Copia de rezervă a setărilor salvată în:\n%1$s</string>
+    <string name="share_settings_backup">Partajează copia de rezervă</string>
+    <string name="import_settings">Importă setările</string>
+    <string name="import_settings_description">Restaurează setările dintr-o copie de rezervă Headunit Revived</string>
+    <string name="import_settings_app_folder">Importă din folderul de copii al aplicației</string>
+    <string name="import_settings_downloads">Importă din Descărcări</string>
+    <string name="import_settings_choose_file">Alege fișierul copiei de rezervă</string>
+    <string name="import_settings_discard_pending">Importul unei copii de rezervă va anula modificările nesalvate. Continuați?</string>
+    <string name="settings_imported">Setări importate: %1$d aplicate, %2$d omise</string>
+    <string name="settings_import_failed">Importul setărilor a eșuat: %1$s</string>
+    <string name="no_settings_backups_title">Nicio copie de rezervă găsită</string>
+    <string name="no_settings_backups_message">Nu s-au găsit copii de rezervă Headunit Revived în folderul aplicației. Exportați mai întâi o copie, apoi importați-o de aici.</string>
+    <string name="no_settings_backups_downloads_message">Nu s-au găsit copii de rezervă Headunit Revived în Descărcări. Exportați mai întâi o copie în Descărcări, apoi importați-o de aici.</string>
+    <string name="no_file_picker_title">Niciun selector de fișiere disponibil</string>
+    <string name="no_file_picker_message">Acest dispozitiv nu are un selector de fișiere compatibil. Puteți utiliza Descărcări sau folderul copiei de rezervă al aplicației.</string>
+    <string name="storage_permission_denied_backup">Permisiunea de stocare a fost refuzată. Descărcările nu au putut fi utilizate.</string>
+    <string name="reset_settings">Restabilește valorile implicite</string>
+    <string name="reset_settings_description">Șterge toate configurațiile, datele din cache și preferințele de conectare automată. Aplicația va reporni pentru a aplica setările din fabrică.</string>
+    <string name="reset_settings_confirm">Sigur doriți să resetați toate setările la valorile implicite? Aplicația va reporni.</string>
+    <string name="reset_settings_confirm_message">Toate setările vor fi resetate la valorile implicite. Copiile de rezervă și fișierele aplicației nu vor fi șterse. Continuați?</string>
+    <string name="reset_settings_discard_pending">Resetarea setărilor va anula modificările nesalvate. Continuați?</string>
+    <string name="settings_reset">Setări resetate la valorile implicite</string>
+    <string name="settings_reset_failed">Resetarea setărilor a eșuat: %1$s</string>
+    <string name="hotspot_ssid_hint">SSID hotspot</string>
+    <string name="hotspot_pass_hint">Parola hotspot</string>
+    <!-- Native USB Driver -->
+    <string name="use_libusb">Utilizați driverul USB nativ</string>
+    <string name="use_libusb_description">Utilizează libusb pentru comunicare. Dezactivați pentru a utiliza API-ul USB standard Android.</string>
+
+    <string name="software_video_decoder">Sursă decodor software</string>
+    <string name="software_video_decoder_bundled">FFmpeg integrat</string>
+    <string name="software_video_decoder_device">MediaCodec dispozitiv</string>
+
+    <string name="btn_show_qr">Afișează codul QR</string>
+
+    <string name="self_mode_overlay_permission_description">Pentru a permite Modului Personal să pornească fiabil în fundal, activați permisiunea „Afișare peste alte aplicații” în ecranul următor.</string>
+</resources>

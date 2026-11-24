@@ -1,0 +1,604 @@
+<resources>
+    <string name="app_name">Headunit Revived</string>
+    <string name="menu">メニュー</string>
+    <string name="settings">設定</string>
+
+    <string name="title_activity_settings">アクティビティ</string>
+    <string name="dummy_button">偽のボタン</string>
+    <string name="dummy_content">偽のコンテンツ</string>
+    <string name="allowed">許可</string>
+    <string name="ignored">無視</string>
+    <string name="exit">終了</string>
+    <string name="video">Android Auto</string>
+    <string name="self_mode">セルフモード</string>
+    <string name="to_android_auto">To Android Auto</string>
+    <string name="title">Headunit Revived</string>
+    <string name="remove">取り除く</string>
+    <string name="usb">USB</string>
+    <string name="wifi">WiFi</string>
+    <string name="dpi">ピクセル密度 (DPI)</string>
+    <string name="mic_sample_rate">マイクサンプリングレート</string>
+    <string name="keymap">キーマップ</string>
+    <string name="night_mode">ダークモード (Android Auto)</string>
+    <string name="night_mode_threshold">ナイトモード値</string>
+    <string name="enter_threshold_value">しきい値を入力</string>
+    <string name="threshold_lux_desc">ルクス値 (0–10000)。 これよりも低い場合は夜を表します。</string>
+    <string name="threshold_brightness_desc">明るさ (0–255)。 これよりも低い場合は夜を表します。</string>
+    <string name="threshold_light_title">明るさ感度</string>
+    <string name="threshold_brightness_title">明るさレベル</string>
+    <string name="threshold_light_hint">周りの明るさレベルがこの値を下回るとダークモードが有効になります。</string>
+    <string name="threshold_brightness_hint">画面の明るさがこの値よりも低い場合、ダークモードが有効になります。Android上では明るさが0~255の範囲で表されますが、実際の範囲はデバイスによって異なる場合があります。そのため、お使いのデバイスに最適な値を見つける必要があります。</string>
+    <string name="current_light_reading">現在の明るさ: %d ルクス</string>
+    <string name="enable_fine_lux_control">微調整 (0–100 ルクス)</string>
+    <string name="night_mode_start">ナイトモードの開始時間</string>
+    <string name="night_mode_end">ナイトモードの終了時間</string>
+
+    <string name="app_theme">ダークモード (アプリケーション)</string>
+    <string name="app_theme_description">アプリの見た目を調節する</string>
+    <string name="change_app_theme">アプリテーマ変更</string>
+    <string name="monochrome_icons">モノクロアイコン</string>
+    <string name="monochrome_icons_description">ダークモードとエクストリームダークモード時にホーム画面でグレースケールアイコンを使用する</string>
+    <string name="use_extreme_dark">エクストリームダークモードを利用する</string>
+    <string name="use_extreme_dark_description">ダークモードの有効時に背景を真っ黒にする</string>
+    <string name="use_gradient_background">グラデーションの背景を利用する</string>
+    <string name="use_gradient_background_description_on">グラデーションの円を中心に配置した独自の背景を描画する</string>
+    <string name="use_gradient_background_description_off">アプリの従来のアプリケーションの背景画像が使用されます</string>
+    <string name="use_gradient_background_description_on_auto">アプリはグラデーションの円を中央に配置した独自の背景を描画します。エクストリームダークモードには適用されません。</string>
+    <string name="use_gradient_background_description_off_auto">アプリの従来の背景が使用されています。エクストリームダークモードには適用されません。</string>
+    <string name="category_dark_mode">ダークモード</string>
+    <string name="category_automation">オートメーション</string>
+    <string name="dark_mode_settings">ダークモード設定</string>
+    <string name="app_theme_short">アプリ</string>
+    <string name="night_mode_short">Android Auto</string>
+    <string name="aa_monochrome">Android Autoをモノクロにする</string>
+    <string name="aa_monochrome_description">夜間の運転時にAndroid Autoの色を減らします。GLESディスプレイモードでかつダークモード時に適応されます。</string>
+    <string name="aa_desaturation">彩度を下げる</string>
+    <string name="aa_desaturation_description">取り除く色の量を制御します。ダークモードが有効時のみに適応されます。</string>
+    <string name="gles_required_title">GLESが必要です</string>
+    <string name="gles_required_message">モノクロモードを利用するにはビデオ出力でグレースケールフィルターを利用するためにGLESレンダリングが必要です。GLESを有効にしますか？</string>
+    <string name="enable_gles">GLESを有効にする</string>
+    <string name="category_navigation">ナビゲーション</string>
+    <string name="category_wireless">ワイヤレス接続</string>
+
+    <string name="reconnection_required_title">再接続が必要です</string>
+    <string name="reconnection_required_message">デバイスが待機状態です。Android Autoを再度起動するためにはUSBケーブルを抜き差ししてください。</string>
+
+    <string name="bluetooth_address_s">Bluetoothアドレス</string>
+    <string name="enter_bluetooth_mac">Bluetooth MACアドレスを入力してください</string>
+    <string name="reset">Reset</string>
+    <string name="gps_for_navigation">ナビゲーション用のGPS</string>
+    <string name="gps_for_navigation_description">ナビゲーションにGPSを利用する</string>
+    <string name="enabled">有効</string>
+    <string name="disabled">無効</string>
+    <string name="resolution">解決</string>
+    <string name="change_resolution">解決策の変更</string>
+    <string name="change_dpi">DPIを変更</string>
+    <string name="change_view_mode">ビューモードを変更</string>
+    <string name="view_mode">ビューモード</string>
+    <string name="surface_view">SurfaceView</string>
+    <string name="texture_view">TextureView</string>
+    <string name="gles_view">GLES20</string>
+    <string name="auto">自動</string>
+    <string name="screen_orientation">画面の向き</string>
+    <string name="change_screen_orientation">画面の向きを変更する</string>
+    <string name="orientation_system_default">システム標準</string>
+    <string name="orientation_auto_sensor">自動（センサー）</string>
+    <string name="orientation_landscape">横向き (0°)</string>
+    <string name="orientation_landscape_reverse">横向きの反転 (180°)</string>
+    <string name="orientation_portrait">縦向き (90°)</string>
+    <string name="orientation_portrait_reverse">縦向きの反転 (270°)</string>
+    <string name="enter_dpi_value">DPI値を入力してください (自動の場合は0)</string>
+    <string name="custom_margin">カスタムマージン</string>
+    <string name="custom_margin_description">カスタム表示マージンを設定する (自動の場合は0)</string>
+    <string name="enter_custom_margins">カスタムマージンを入力 (自動の場合は0)</string>
+    <string name="margin_left">左</string>
+    <string name="margin_top">上</string>
+    <string name="margin_right">右</string>
+    <string name="margin_bottom">下</string>
+
+    <string name="start_in_fullscreen_mode">スクリーンモード</string>
+    <string name="start_in_fullscreen_mode_description">システムバー（ステータスバーとナビゲーションバー）の表示方法を選択します。</string>
+    <string name="fullscreen_none">普通 (全てのバーを表示)</string>
+    <string name="fullscreen_immersive">イマーシブ (全てのバーが非表示)</string>
+    <string name="fullscreen_status_only">ステータスバーのみ非表示</string>
+    <string name="fullscreen_immersive_avoid_notch">イマーシブ (ノッチ回避)</string>
+    <string name="fullscreen_immersive_avoid_notch_desc">すべてのバーを非表示にし、投影がノッチやカットアウトで隠れないようにパディングを追加します。</string>
+
+    <string name="usb_status">USBの状態: %s</string>
+    <string name="projection_status">投影状況: %s</string>
+    <string name="connected">接続済み</string>
+    <string name="disconnected">切断済み</string>
+    <string name="running">実行</string>
+    <string name="not_running">実行されていません</string>
+    <string name="no_android_auto_device_connected">Android Autoデバイスが接続されていません。USB接続を確認してください。</string>
+    <string name="no_usb_device_connected">デバイスにUSBデバイスが接続されていません。</string>
+    <string name="press_back_again_to_exit">もう一度戻るボタンを押して終了します</string>
+    <string name="back">戻る</string>
+    <string name="debug_mode">デバッグモード</string>
+    <string name="debug_mode_description">ログのエクスポート</string>
+    <string name="log_level">ログレベル</string>
+    <string name="log_level_description">エクスポート時にログレベルをフィルタリングする</string>
+    <string name="log_source">ログソース</string>
+    <string name="log_source_logcat">Logcat</string>
+    <string name="log_source_applog_file">ファイルへ直接</string>
+    <string name="start_log_capture">ログ取得を開始する</string>
+    <string name="start_log_capture_description">デバッグのためにログの記録を開始します</string>
+    <string name="start_log_capture_in_applog_file">Log のメッセージはキャプチャ中のみファイルに書き込まれます</string>
+    <string name="start_log_capture_in_silent">記録を開始できません: サイレントログレベルが選択されています</string>
+    <string name="stop_log_capture">ログ取得を停止</string>
+    <string name="stop_log_capture_description">録画中です...タップして停止</string>
+    <string name="export_logs">ログをエクスポート</string>
+    <string name="export_logs_description">デバッグのためにログを保存する</string>
+
+
+    <string name="not_set">未設定</string>
+    <string name="keymap_description">Headunitのキーバインドを変更する</string>
+
+    <string name="key_soft_left">Soft左</string>
+    <string name="key_soft_right">Soft右</string>
+    <string name="key_dpad_up">D-Pad上</string>
+    <string name="key_dpad_down">D-Pad下</string>
+    <string name="key_dpad_left">D-Pad左</string>
+    <string name="key_dpad_right">D-Pad右</string>
+    <string name="key_dpad_center">D-Pad中央 (OK)</string>
+    <string name="key_media_play">メディア再生</string>
+    <string name="key_media_pause">メディア一時停止</string>
+    <string name="key_media_play_pause">メディア再生/一時停止</string>
+    <string name="key_media_next">次のトラック</string>
+    <string name="key_media_prev">前のトラック</string>
+    <string name="key_search">音声コマンド</string>
+    <string name="key_call">電話 (許可)</string>
+    <string name="key_endcall">電話終了 (終了)</string>
+    <string name="key_music">音楽</string>
+    <string name="key_nav">ナビゲーション</string>
+    <string name="key_night">ナイトモードの切り替え</string>
+    <string name="key_enter">エンター</string>
+    <string name="key_home">ホーム</string>
+    <string name="key_app_switch">履歴</string>
+    <string name="key_button_a">Aボタン (選択)</string>
+    <string name="key_button_b">Bボタン (戻る)</string>
+
+
+    <!-- Language Settings -->
+    <string name="app_language">アプリ言語</string>
+    <string name="system_default">システム標準</string>
+    <string name="change_language">言語変更</string>
+
+    <!-- Categories for SettingsFragment -->
+    <string name="category_general">一般</string>
+    <string name="auto_start_self_mode">自動開始セルフモード</string>
+    <string name="auto_start_self_mode_description">アプリケーションが開かれた時に自動でセルフモードが開始します。</string>
+    <string name="usb_auto_connect">USB自動接続</string>
+    <string name="usb_auto_connect_description">アプリケーションが開始された時に既知のUSBデバイスに接続されると自動的に接続します。</string>
+    <string name="auto_start_bt_label">Bluetooth自動開始</string>
+    <string name="auto_start_bt_description">特定のBluetoothデバイスが接続されたときに、Headunit Revivedを自動的に起動します。</string>
+    <string name="auto_start_wifi_label">Wi-Fi自動起動</string>
+    <string name="auto_start_wifi_description">特定のWi-Fi SSIDに接続されたときにHeadunit Revivedを自動的に起動します。</string>
+    <string name="auto_start_wifi_ssid_label">Wi-Fi SSID</string>
+    <string name="auto_start_wifi_ssid_description">このWi-Fi SSIDに接続されている場合のみ接続を試みます</string>
+    <string name="auto_start_wifi_warning">レガシー機能：バックグラウンド制限のため、Android 8以降では動作が不安定になる場合があります。アプリをバッテリー最適化から除外してください。</string>
+    <string name="enter_wifi_ssid">Wi-Fi SSIDを入力してください</string>
+    <string name="wifi_ssid_not_set">未設定</string>
+
+    <string name="listen_for_usb_devices_label">USBデバイスへの反応</string>
+    <string name="listen_for_usb_devices_description">USBデバイスが接続されたときにAndroidのシステムプロンプトを表示します。</string>
+    <string name="show_toast_messages">トースト通知を表示</string>
+    <string name="show_toast_messages_description">接続・切断・モード切替時にステータスのトースト通知を表示します。</string>
+    <string name="auto_start_usb_label">USBから自動起動</string>
+    <string name="auto_start_usb_description">USBデバイスが接続されたら、アプリを自動的に起動して接続を試みます</string>
+    <string name="auto_start_settings">自動起動設定</string>
+    <string name="auto_start_settings_description">アプリが自動起動するタイミングを設定します</string>
+    <string name="auto_start_oem_warning">このデバイスでは、このアプリの自動起動を有効にし、バッテリー最適化またはバックグラウンド制限を解除する必要がある場合があります。\n\nクイックブート（高速起動）対応のヘッドユニットでは、自動起動が機能しない場合があります。システム設定で「DuraSpeed」を探し、そこでこのアプリを有効にしてください。一部のヘッドユニットでは、DuraSpeedは非表示になっているため、「Hidden Settings」などのアプリが必要になる場合があります。DuraSpeedがない場合は、クイックブートを無効にしてみてください。</string>
+    <string name="auto_start_on_boot_label">ブート時に開始</string>
+    <string name="auto_start_on_boot_description">端末起動時にアプリを自動的に開きます。Android 10以降では「他のアプリの上に表示」権限が必要です。</string>
+    <string name="auto_start_screen_on_label">オンスクリーンで開始</string>
+    <string name="auto_start_screen_on_description">画面が点灯するたびにアプリを起動します。完全にシャットダウンしないヘッドユニットや、他の自動起動オプションが機能しない高速起動モードを使用するヘッドユニットに最適です。スマートフォンやタブレットには推奨しません。</string>
+    <string name="select_bt_device">Bluetooth デバイスの選択</string>
+    <string name="bt_device_not_set">未設定</string>
+    <string name="bt_permission_denied_title">Bluetooth 許可が必要です</string>
+    <string name="bt_permission_denied_message">ペアリング済みデバイスを選択するには、Bluetoothのアクセス許可が必要です。アプリの設定で許可してください。</string>
+    <string name="overlay_permission_title">バックグラウンド起動許可</string>
+    <string name="overlay_permission_description">Bluetooth接続時にHeadunit Revivedが自動的に起動するようにするには、次の画面で「他のアプリの上に表示する」権限を有効にしてください。</string>
+    <string name="open_settings">設定</string>
+    <string name="wireless_connection_settings">ワイヤレス接続</string>
+    <string name="right_hand_drive">右ハンドル</string>
+    <string name="right_hand_drive_description">右側通行用のUI配置</string>
+    <string name="category_graphic">グラフィック</string>
+    <string name="custom_insets">カスタム挿入（余白）</string>
+    <string name="inset_top">上</string>
+    <string name="inset_bottom">下</string>
+    <string name="inset_left">左</string>
+    <string name="inset_right">右</string>
+    <string name="category_debug">デバッグ</string>
+
+    <!-- Video Settings -->
+    <string name="category_video">ビデオ</string>
+    <string name="force_software_decoding">ソフトウェアデコードを強制する</string>
+    <string name="force_software_decoding_description">一部のデバイスで問題が修正される可能性があるが、パフォーマンスは低下する。</string>
+    <string name="wireless_mode">ワイヤレスモード</string>
+    <string name="wireless_mode_description">アプリのワイヤレス接続方法を選択してください（手動リスト、電話の自動検索、またはワイヤレスランチャーモード）。</string>
+    <string-array name="wireless_connection_modes">
+        <item>マニュアル (リスト)</item>
+        <item>自動検索 (Headunit Server)</item>
+        <item>Wireless Helper (Waiting for Phone)</item>
+    </string-array>
+    <string name="auto_connect_last_session">前回のセッションに自動接続</string>
+    <string name="auto_connect_last_session_description">アプリ起動時に最後に使用したデバイスに自動的に再接続する。</string>
+    <string name="auto_connect_single_usb">USBデバイスを自動接続します</string>
+    <string name="auto_connect_single_usb_description">互換性のあるデバイスが1台しかない場合に自動的に接続します</string>
+    <string name="auto_connect_settings">自動接続設定</string>
+    <string name="auto_connect_settings_description">自動接続方法とその優先順位を設定します。</string>
+    <string name="auto_connect_help">これらのメソッドはアプリ起動時に自動的に実行されます。必要なメソッドを有効にし、ドラッグして実行順序を設定してください。最初に有効になり、かつ正常に実行されたメソッドが使用されます。</string>
+    <string name="auto_connect_priority">優先度 %d</string>
+    <string name="auto_connect_all_disabled">すべて無効</string>
+    <string name="drag_to_reorder">ドラッグして並べ替える</string>
+    <string name="move_up">上に移動</string>
+    <string name="move_down">下に移動</string>
+    <string name="auto_connecting_single_usb">USBデバイスに自動接続しています…</string>
+    <string name="video_codec">ビデオコーデック</string>
+    <string name="fps_limit">FPS 制限</string>
+    <string name="save">保存</string>
+    <string name="save_and_restart">保存 (再接続が必要です)</string>
+    <string name="add_new">新規追加</string>
+    <string name="cancel">キャンセル</string>
+    <string name="enable">有効にする</string>
+    <string name="pref_stretch_screen_title">画面いっぱいに伸ばす</string>
+    <string name="pref_stretch_screen_summary">アスペクト比を無視して画面全体に表示します（黒帯を削除）。</string>
+
+
+    <!-- Audio Settings -->
+    <string name="forced_scale">強制スケール (レガシー修正)</string>
+    <string name="forced_scale_description">SurfaceViewを使用する一部の古いデバイスでのスケーリングの問題を修正します。画像が歪んだりずれたりして見える場合にのみ使用してください。</string>
+    <string name="hud_mirroring">HUDモード（左右反転）</string>
+    <string name="hud_mirroring_description">フロントガラス投影用に画面を左右反転します（ヘッドアップディスプレイ）。TextureViewまたはGLES20表示モードが必要です（SurfaceViewでは動作しません）。</string>
+
+    <string name="category_audio">オーディオ</string>
+    <string name="enable_audio_sink">オーディオシンク</string>
+    <string name="enable_audio_sink_description">無効にすると、ヘッドユニットは音声を受信しなくなります。音声はスマートフォンから再生されます。</string>
+    <string name="separate_audio_streams">音声ストリームの分離</string>
+    <string name="separate_audio_streams_description">単一のマルチメディアストリームの代わりに、音楽、通話、通知の音声チャネルを分離します（一部のデバイスでは正しく機能しない場合があります）。</string>
+    <string name="use_aac_audio">AAC Audioを利用する</string>
+    <string name="use_aac_audio_description">帯域幅を節約するために、音声にAACコーデックを使用します（実験的機能）。</string>
+    <string name="audio_volume_offset">オーディオボリュームオフセット</string>
+    <string name="media_volume_offset">メディアボリュームオフセット</string>
+    <string name="assistant_volume_offset">アシスタントボリュームオフセット</string>
+    <string name="navigation_volume_offset">ナビゲーションボリュームオフセット</string>
+    <string name="mic_input_source">マイク入力ソース</string>
+    <string name="mic_input_source_description">マイクの音声ソースを選択します。</string>
+    <string-array name="mic_input_sources">
+        <item>デフォルト (システム標準)</item>
+        <item>内蔵マイク (生の入力)</item>
+        <item>音声認識 (ノイズの低減)</item>
+        <item>ボイスコミュニケーション（エコー＋ノイズキャンセリング機能付き）</item>
+        <item>Bluetoothヘッドセット（SCO）</item>
+    </string-array>
+
+    <!-- Info Settings -->
+    <string name="category_info">情報</string>
+    <string name="about">アプリとサポート</string>
+    <string name="about_description">Headunit Revivedの多くの情報をゲットする</string>
+    <string name="version">バージョン</string>
+    <string name="about_title">Headunit Revivedについて</string>
+    <string name="copyright">© 2025-%d André Rinas</string>
+
+    <!-- Safety Disclaimer -->
+    <string name="disclaimer_title">安全と責任について</string>
+    <string name="disclaimer_header">重要な警告</string>
+    <string name="disclaimer_accept">理解し、同意しました</string>
+    <string name="disclaimer_text"><![CDATA[
+        <b>1. 運転に集中する</b><br/>
+        運転中にこのソフトウェアを操作することは、脇見運転になり危険です。常に安全運転を最優先し、交通規則を遵守してください。このアプリケーションは、安全な状況でのみ使用してください。<br/><br/>
+        <b>2. 責任の制限</b><br/>
+        Headunit Revivedは、いかなる保証もなしに「現状のまま」提供されます。開発者は、本ソフトウェアの使用に起因する事故、車両／機器の損傷、または法的結果について一切の責任を負いません。<br/><br/>
+        <b>3. 他のサービスとの関連</b><br/>
+        このプロジェクトは独立したオープンソースの取り組みであり、Google LLCまたはAndroid Autoブランドとは一切関係がなく、承認も受けておらず、関連性もありません。
+    ]]></string>
+
+    <!-- Toast Messages -->
+    <string name="searching">検索中…</string>
+    <string name="auto_connecting_to">自動接続中%s…</string>
+    <string name="auto_connecting_usb">USBデバイスに自動接続中…</string>
+    <string name="already_connected">すでに接続されています</string>
+    <string name="already_scanning">すでに検索中…</string>
+    <string name="searching_headunit_server">Headunit Serverから検索中…</string>
+    <string name="already_searching_phone">すでに携帯から検索中…</string>
+    <string name="searching_phone">携帯を検索中…</string>
+    <string name="key_mappings_reset">キーマップのリセット</string>
+    <string name="press_key_to_assign">キーを押して割り当てます \'%s\'…</string>
+    <string name="key_assigned">\'%1$s\' に割り当て中 \'%2$s\'</string>
+    <string name="last_key_press">最後に押されたキー: %1$s (%2$d)</string>
+    <string name="scan">スキャン</string>
+    <string name="scanning_network">ネットワーク検索中…</string>
+    <string name="found_connecting">%sが見つかりました。接続中です…</string>
+    <string name="no_devices_found">デバイスが見つかりませんでした</string>
+    <string name="unsaved_changes">保存されていない変更</string>
+    <string name="unsaved_changes_message">保存されていない変更があります。破棄しますか？</string>
+    <string name="discard">破棄</string>
+    <string name="stopping_service">変更を適用するためにサービスを停止します…</string>
+    <string name="settings_saved">設定を保存</string>
+    <string name="logs_exported">エクスポートされたログ</string>
+    <string name="log_saved_to">ログをセーブ中:\n%s</string>
+    <string name="share">シェア</string>
+    <string name="close">閉じる</string>
+    <string name="failed_export_logs">ログのエクスポートに失敗しました</string>
+    <string name="failed_export_in_silent_logs">ログをエクスポートできません: サイレントログレベルが選択されています</string>
+    <string name="switching_to_android_auto">Android Autoに切り替え中…</string>
+    <string name="switch_failed">切り替えに失敗しました</string>
+    <string name="requesting_usb_permission">USBアクセス許可を要求しています…</string>
+    <string name="enter_ip_address">IPアドレスを入力</string>
+    <string name="switching_usb_accessory_mode">USBデバイスをアクセサリモードに切り替え中 %s</string>
+    <string name="success">成功</string>
+    <string name="failed">失敗</string>
+    <string name="failed_start_android_auto">Android Autoの起動に失敗しました</string>
+    <string name="failed_self_mode_android10">セルフモードはAndroid 10 (AA 16.4+) でGoogleによってブロックされている可能性があります。READMEを同封します。</string>
+    <string name="android_auto_starting">Android Autoは起動中です…</string>
+    <string name="connection_interrupted">切断されました</string>
+    <string name="connection_interrupted_detail">再試行中…</string>
+    <string name="wifi_disconnect_toast">Android Autoが切断されました：ワイヤレスAAを使用している場合は、スマートフォンのWi-Fi設定で「ネットワークを切り替える」または「ネットワークアクセラレーション」を無効にしてください。</string>
+    <string name="reset_usb_option">USB接続をリセットする</string>
+    <string name="reset_usb_timeout">USBデバイスが見つかりません。接続を確認してください。</string>
+    <string name="notification_service_running">Headunit Revivedが起動中</string>
+    <string name="notification_projection_active">Android Autoを起動中</string>
+    <string name="shortcut_connect_title">接続</string>
+    <string name="shortcut_connect_desc">最後に認識されたデバイスに接続する</string>
+    <string name="shortcut_selfmode_title">セルフモード</string>
+    <string name="shortcut_selfmode_desc">このデバイスでAndroid Autoを開始</string>
+    <string name="shortcut_disconnect_title">切断</string>
+    <string name="shortcut_disconnect_desc">現在のセッションを終了する</string>
+    <string name="shortcut_exit_title">アプリを閉じる</string>
+    <string name="shortcut_exit_desc">全てのサービスを停止し、アプリを閉じる</string>
+    <string name="shortcut_night_mode_auto_title">オートモード</string>
+    <string name="shortcut_night_mode_auto_desc">自動ナイトモードを復元</string>
+    <string name="shortcut_night_mode_day_title">日中モード</string>
+    <string name="shortcut_night_mode_day_desc">強制的に日中モードにする</string>
+    <string name="shortcut_night_mode_night_title">夜間モード</string>
+    <string name="shortcut_night_mode_night_desc">強制的に夜間モードにする</string>
+    <string name="setup_welcome_title">クイックセットアップ</string>
+    <string name="setup_welcome_msg">このウィザードは、スムーズなAndroid Auto体験のための最適な設定を選択するのに役立ちます。\n\nこれらの設定は後でいつでも変更したり、アプリの設定からこのウィザードを再起動したりできます。</string>
+    <string name="setup_start">スタート</string>
+    <string name="setup_size_title">画面のサイズ</string>
+    <string name="setup_size_phone">携帯 / 小さい (4-6\")</string>
+    <string name="setup_size_small">小さいタブレット (7-8\")</string>
+    <string name="setup_size_standard">通常サイズ (9-10\")</string>
+    <string name="setup_size_large">大きいサイズ (11\"+)</string>
+    <string name="setup_orientation_title">デバイスの向き</string>
+    <string name="setup_orientation_landscape">横向き</string>
+    <string name="setup_orientation_portrait">縦向き</string>
+    <string name="setup_result_title">最適化が完了しました</string>
+    <string name="setup_apply">適用する</string>
+    <string name="setup_widescreen_detected">ワイドスクリーンディスプレイを検出しました。</string>
+    <string name="auto_optimize">自動最適化設定</string>
+    <string name="auto_optimize_desc">システムチェックを実行して、お使いのデバイスに最適な設定を見つけてください。</string>
+
+    <!-- Navigation notifications (from any AA nav app) -->
+    <string name="show_navigation_notifications">ナビゲーション通知</string>
+    <string name="show_navigation_notifications_description">通知に「Xメートル先でYを実行する」と現在の道路を表示する（デバッグ用）</string>
+    <string name="nav_notification_channel_name">ナビゲーション</string>
+    <string name="nav_notification_channel_description">Android Autoのナビゲーション指示をターンする</string>
+    <string name="nav_notification_title_format">%1$d メートル先 — %2$s</string>
+    <string name="nav_notification_street_format">通り: %1$s</string>
+    <string name="nav_action_unknown">アクション</string>
+    <string name="nav_action_depart">出発</string>
+    <string name="nav_action_name_change">名前の変更</string>
+    <string name="nav_action_slight_turn">少し曲がる</string>
+    <string name="nav_action_turn">曲がる</string>
+    <string name="nav_action_sharp_turn">鋭く曲がる</string>
+    <string name="nav_action_uturn">U-ターン</string>
+    <string name="nav_action_on_ramp">ランプに入る</string>
+    <string name="nav_action_off_ramp">ランプを出る</string>
+    <string name="nav_action_merge">合流する</string>
+    <string name="nav_action_roundabout_enter">ラウンドアバウトに入る</string>
+    <string name="nav_action_roundabout_exit">ラウンドアバウトを出る</string>
+    <string name="nav_action_roundabout">ラウンドアバウト</string>
+    <string name="nav_action_straight">直進</string>
+    <string name="nav_action_ferry">フェリー</string>
+    <string name="nav_action_ferry_train">フェリー / 列車</string>
+    <string name="nav_action_destination">到着</string>
+    <string name="show_fps_counter">FPSカウンターを表示する</string>
+    <string name="show_fps_counter_description">投影中に、画面左上にリアルタイムのFPSオーバーレイを表示します。</string>
+
+    <!-- Auto-start permission strings -->
+    <string name="reopen_on_reconnection_label">再接続時に再開</string>
+    <string name="reopen_on_reconnection_description">終了ボタンを押しても、アプリはバックグラウンドで実行され続け、USB接続の監視を継続します。デバイスが再接続されると、アプリは自動的に再起動します。</string>
+    <string name="overlay_permission_required">自動起動には「他のアプリの上に表示する」権限が必要です</string>
+    <string name="usb_permission_denied">USB接続の許可が拒否されました。自動接続するには、USBアクセスを許可してください。</string>
+    <string name="overlay_permission_denied_auto_start_disabled">「他のアプリの上に表示する」の権限が付与されていません。自動起動は無効になっています。</string>
+
+    <!-- Theme -->
+    <string name="use_white_background">白いホーム画面の壁紙を使用する</string>
+    <string name="category_input">入力設定</string>
+    <string name="enable_rotary">ロータリーコントローラーを有効にする</string>
+    <string name="enable_rotary_description">物理的なロータリーノブとホイールのサポートを発表しました。タッチスクリーンが正しく動作しない場合は、この機能を無効にしてください。</string>
+
+    <string name="kill_on_disconnect">切断時にアプリを閉じる</string>
+    <string name="kill_on_disconnect_description">Android Autoが切断されたときにアプリを自動的に閉じます。</string>
+    <string name="kill_on_disconnect_warning_title">警告</string>
+    <string name="kill_on_disconnect_warning">以下の再接続設定は、切断時にアプリを閉じる設定と競合します。\n\n%1$s\n\nヘッドユニットの電源を入れると、初期接続設定（自動接続、自動起動）は引き続き機能します。ただし、最初の切断後、アプリは再接続を試みることなくすぐに閉じます。\n注：一部のアフターマーケット製ヘッドユニットは完全にシャットダウンせず、代わりに休止状態になります。これは、画面をロックしても実際には電源が​​切れないスマートフォンに似ています。このオプションを有効にすると、アプリは最初の切断後に閉じ、次のイグニッションサイクルで自動的に再開しない場合があります。\n\n上記の再接続設定を無効にしますか？</string>
+    <string name="kill_on_disconnect_disable_and_enable">無効化と有効化</string>
+    <string name="kill_on_disconnect_enable_anyway">いつでも有効にする</string>
+    <string name="kill_on_disconnect_conflicts_disabled">競合する設定は無効になっています</string>
+    <string name="kill_on_disconnect_boot_warning">「起動時に開始」が有効になっています。アプリが切断時に終了し、このデバイスがシャットダウンではなく休止状態になった場合、起動イベントがトリガーされないため、次の起動時にアプリが自動的に再開されない可能性があります。デバイスはスリープ状態から復帰します。</string>
+    <string name="kill_on_disconnect_screen_on_warning">「画面オン時に起動」が有効になっています。この設定では、画面がオンになるたびにアプリが起動します。「切断時に終了」と組み合わせると、切断後にアプリは終了しますが、画面が再びオンになるとすぐに再起動するため、再起動ループが発生します。</string>
+
+    <string name="wifi_disabled_info">お知らせ：Wi-Fiは無効になっています。</string>
+
+    <string name="bt_not_enabled">Bluetoothが無効です</string>
+
+    <!-- Vehicle Info Settings -->
+    <string name="vehicle_info_settings">車両情報</string>
+    <string name="vehicle_info_settings_description">お使いのスマートフォン上で、車両情報の表示方法をカスタマイズできます。</string>
+    <string name="ui_scale">UI スケール</string>
+    <string name="ui_scale_home">ホーム画面</string>
+    <string name="ui_scale_settings">設定画面</string>
+    <string name="category_vehicle">車両</string>
+    <string name="category_head_unit">車載機</string>
+    <string name="vehicle_display_name_label">表示ネーム</string>
+    <string name="vehicle_display_name_description">スマートフォンに表示される車両の名前です</string>
+    <string name="vehicle_make_label">メーカー</string>
+    <string name="vehicle_make_description">車両メーカー (例,ホンダ,トヨタ)</string>
+    <string name="vehicle_model_label">Model</string>
+    <string name="vehicle_model_description">車種 (例,Civic,Corolla)</string>
+    <string name="vehicle_year_label">年</string>
+    <string name="vehicle_year_description">車両年式</string>
+    <string name="vehicle_id_label">車両ID</string>
+    <string name="vehicle_id_description">内部識別子としてのみ使用されます。これを変更すると、お使いのスマートフォンはこの車両を別の車両として認識し、この車両に関するAndroid Autoの設定がリセットされます。</string>
+    <string name="head_unit_make_label">メーカー</string>
+    <string name="head_unit_make_description">車載機メーカー</string>
+    <string name="head_unit_make_hint">お使いのスマートフォンのAndroid Auto設定には、この名前が表示されます。</string>
+    <string name="head_unit_model_label">モデル</string>
+    <string name="head_unit_model_description">車載機モデル</string>
+    <string name="vehicle_year_error_invalid">有効な年を入力してください</string>
+    <string name="vehicle_year_error_max">年は%1$dより遅くできません</string>
+    <string name="vehicle_info_restart_note">このデータは、接続するたびにAndroid Autoに送信されます。</string>
+
+    <string name="auto_enable_hotspot">ホットスポットを自動有効化</string>
+    <string name="auto_enable_hotspot_description">このデバイスでWi-Fiホットスポットを自動的に起動します。（すべてのデバイスで動作するとは限りません）</string>
+    <string name="hotspot_warning_title">実験的機能</string>
+    <string name="hotspot_warning_message">この機能は反射を利用するため、すべてのデバイスで動作するとは限りません。また、「システム設定の変更」権限を手動で付与する必要がある場合もあります。</string>
+    <string name="hotspot_permission_title">許可が必要です</string>
+    <string name="hotspot_permission_message">ホットスポット機能を使用するには、「システム設定の変更」権限が必要です。次の画面で有効にしてください。</string>
+
+    <string name="wait_for_wifi">Wi-Fi Directを使用する前に、Wi-Fiが有効になるまでお待ちください。</string>
+    <string name="wait_for_wifi_description">起動時に、Wi-Fi接続が完了するまで待ってからWi-Fi Directを開始します。ヘッドユニットの電源投入後、Wi-Fi接続に数秒かかる場合は、この設定を有効にしてください。</string>
+    <string name="wait_for_wifi_timeout">WiFi待機タイムアウト</string>
+    <string name="wireless_24ghz_warning">注意：2.4GHzデバイスでのワイヤレスAndroid Autoは、ラグ、カクつき、切断の原因となる場合があります。問題が発生した場合は、USB接続でテストし、ネットワークの制限かどうかを確認してください。</string>
+    <string name="supported_nativeaa">高度なワイヤレスサポート</string>
+    <string name="supported_nativeaa_desc">素晴らしいニュース！お使いのデバイスは「ネイティブワイヤレス」モードをサポートしており、よりシームレスな Android Auto 体験を提供します。\n\nこれを有効にするには、Bluetooth キャッシュをリフレッシュする必要があります。次の手順をお願いします：\n1. スマートフォンにある既存のペアリングを削除する\n2. OK をクリックして Bluetooth を再起動する\n3. スマートフォンを再度ペアリングする\n\n今すぐネイティブ AA モードに切り替えますか？</string>
+    <string name="not_supported_nativeaa">ネイティブワイヤレスはサポートされていないようです</string>
+    <string name="not_supported_nativeaa_desc">お使いのデバイスは、ネイティブワイヤレスに必要な Bluetooth または Wi-Fi 機能をサポートしていない可能性があります。とにかく試してみることもできますが、失敗した場合は、代わりに「Wireless Helper」または「Auto (Headunit Server)」モードを使用してください。</string>
+    <string name="fake_speed_title">ビデオロックの無効化 (Fake Speed)</string>
+    <string name="fake_speed_description">走行中にビデオコンテンツがブロックされるのを防ぐため、一定の低速 (0.5 m/s) をスマートフォンに報告します。注意して使用してください。</string>
+    <string name="wireless_mode_helper">Wireless Helper</string>
+    <string name="wireless_mode_native">ネイティブ</string>
+    <string name="wireless_mode_server">Headunit Server</string>
+    <string name="server_mode_label">サーバーモード</string>
+    <string name="server_mode_manual">マニュアル</string>
+    <string name="server_mode_auto">オート</string>
+
+    <string name="helper_strategy_label">ヘルパーの接続戦略</string>
+    <string-array name="helper_strategies">
+        <item>共通 Wifi (NSD)</item>
+        <item>WiFi Direct (P2P)</item>
+        <item>周辺のデバイス (ベータ)</item>
+        <item>スマホのホットスポット (ホスト)</item>
+        <item>車載機のホットスポット (パッシブ)</item>
+    </string-array>
+
+    <string name="select_nearby_device">周辺のデバイスを選択</string>
+    <string name="nearby_device_found">周辺のデバイスが見つかりました</string>
+    <string name="connecting_to_nearby">%s に接続中…</string>
+
+    <string name="exit_dialog_title">Android Auto を終了</string>
+    <string name="exit_dialog_stop">接続を停止</string>
+    <string name="exit_dialog_pip">ピクチャー・イン・ピクチャー (PiP)</string>
+    <string name="exit_dialog_background">バックグラウンドへ移動</string>
+    <string name="gesture_hint">ヒント：左端から 2 本の指でスワイプすると、終了メニューが開きます。</string>
+    <string name="audio_latency_multiplier">オーディオ遅延倍率</string>
+    <string name="audio_latency_multiplier_description">オーディオバッファサイズの調整（低 = 遅延減、高 = 音飛び減）</string>
+    <string name="audio_queue_capacity">オーディオキュー容量 (Backpressure)</string>
+    <string name="media_action_previous">前へ</string>
+    <string name="media_action_play">再生</string>
+    <string name="media_action_pause">一時停止</string>
+    <string name="media_action_next">次へ</string>
+    <string name="media_session_aa_status_placeholder">接続済み</string>
+    <string name="sync_media_session_aa_metadata">メディアセッションにAAの再生中トラックを表示</string>
+    <string name="sync_media_session_aa_metadata_description">スマートフォンの曲名、アーティスト、再生時間、アルバムアートをシステムのメディアセッションとメディア通知に表示します</string>
+    <string name="error_usb_permission_failed">システムエラー: USBパーミッションダイアログの要求に失敗しました。</string>
+
+    <!-- Custom loading screen -->
+    <string name="loading_screen">読み込み画面</string>
+    <string name="loading_screen_default">デフォルト</string>
+    <string name="loading_screen_custom">カスタム</string>
+    <string name="loading_screen_dialog_title">カスタム読み込み画面</string>
+    <string name="loading_screen_select_file">ファイルを選択</string>
+    <string name="loading_screen_remove">削除</string>
+    <string name="loading_screen_recommendation">推奨解像度：%1$dx%2$d</string>
+    <string name="loading_screen_supported_formats">対応形式：画像（PNG、JPG、BMP、WEBP、GIF）\u2022 動画（MP4、MKV、WEBM、3GP）\u2022 最大：10 MB</string>
+    <string name="loading_screen_no_media">カスタムメディアが選択されていません</string>
+    <string name="loading_screen_file_too_large">ファイルが大きすぎます（最大 10 MB）</string>
+    <string name="loading_screen_unsupported_format">非対応の形式です。画像または動画ファイルを使用してください</string>
+    <string name="loading_screen_file_error">選択したファイルを読み込めませんでした</string>
+    <string name="loading_screen_show_text">「Android Autoは起動中です」テキストを表示</string>
+    <string name="loading_screen_tap_preview">タップでプレビュー</string>
+    <string name="loading_screen_tap_to_close">どこでもタップして閉じる</string>
+    <string name="loading_screen_keep_aspect_ratio">アスペクト比を維持</string>
+    <string name="loading_screen_scale">スケール</string>
+    <string name="loading_screen_recommended_aspect_ratio">推奨アスペクト比：%1$d:%2$d</string>
+    <string name="loading_screen_tap_fullscreen_hint">プレビューをタップしてフルスクリーンで表示</string>
+    <string name="loading_screen_loop_video">短いアニメーションをループ再生</string>
+    <string name="microphone_settings">マイク設定</string>
+    <string name="microphone_settings_description">マイク入力とオーディオ処理の設定を行います。</string>
+    <string name="mic_echo_canceler">エコーキャンセラー (AEC)</string>
+    <string name="mic_echo_canceler_description">マイクからのエコーを除去します。無音になったり音が歪んだりする場合は無効にしてください。</string>
+    <string name="mic_noise_suppressor">ノイズサプレッサー (NS)</string>
+    <string name="mic_noise_suppressor_description">背景のノイズを低減します。声がこもって聞こえる場合は無効にしてください。</string>
+    <string name="mic_auto_gain_control">自動ゲイン制御 (AGC)</string>
+    <string name="mic_auto_gain_control_description">マイクの音量を自動的に調整します。音量が不安定な場合は無効にしてください。</string>
+    <string name="mic_feature_unsupported">この機能はお使いのデバイスでサポートされていません。</string>
+    <string name="bt_permission_denied">Bluetooth権限が拒否されました。デバイスのスキャンができません。</string>
+    <string name="wifi_autostart_title">WiFi自動起動</string>
+    <string name="wifi_autostart_content">%s に接続されました。タップしてAndroid Autoを開始します。</string>
+
+    <!-- New strings merged from 2.3.1 -->
+    <string name="bt_devices_selected">個のデバイスを選択中</string>
+    <string name="static_audio_focus">静的オーディオフォーカス</string>
+    <string name="static_audio_focus_description">オーディオフォーカスが常に保持されているとスマートフォンに認識させ、一般的なヘッドユニットでのオーディオルーティングの切断を防ぎます。ナビゲーションの音声案内中には、ソフトウェアによる音量减衰（ダッキング）も実行します。</string>
+    <string name="bluetooth_adapter_label">Bluetooth アダプター</string>
+    <string name="bluetooth_adapter_description">ハンドシェイクに使用する Bluetooth アダプター/コントローラーを選択します。デュアル Bluetooth システムで役立ちます。</string>
+    <string name="select_bt_adapter">Bluetooth アダプターの選択</string>
+    <!-- QR Code Generator -->
+    <string name="share_hotspot_qr_title">Wireless Helper の設定</string>
+    <string name="share_hotspot_qr_desc">携帯電話自動接続用のQRコードを表示</string>
+    <string name="hotspot_qr_description">Wireless Helper 設定用QRコード</string>
+    <string name="scan_with_wireless_helper">スマートフォンの Wireless Helper にあるQRスキャナーを使用して、このQRコードをスキャンしてください。</string>
+    <string name="share_hotspot_qr_error">アクティブなWi-Fiホットスポットの認証情報を取得できませんでした。ホットスポットがオンになっており、位置情報が有効になっていることを確認してください。</string>
+
+    <!-- Brightness, quick settings, key back, backup, wireless helper QR -->
+    <string name="current_brightness_reading">現在の明るさ: %d / 255</string>
+    <string name="exit_dialog_settings">クイック設定</string>
+    <string name="key_back">戻る</string>
+    <string name="category_backup">バックアップ</string>
+    <string name="export_settings">設定をエクスポート</string>
+    <string name="export_settings_description">設定のバックアップを JSON ファイルとして保存</string>
+    <string name="export_settings_app_folder">アプリのバックアップフォルダに保存</string>
+    <string name="export_settings_downloads">ダウンロードに保存</string>
+    <string name="export_settings_choose_location">保存場所を選択</string>
+    <string name="settings_exported">設定をエクスポートしました</string>
+    <string name="settings_export_failed">設定のエクスポートに失敗しました: %1$s</string>
+    <string name="settings_backup_saved_to">設定のバックアップを保存しました:\n%1$s</string>
+    <string name="share_settings_backup">設定のバックアップを共有</string>
+    <string name="import_settings">設定をインポート</string>
+    <string name="import_settings_description">Headunit Revived のバックアップから設定を復元</string>
+    <string name="import_settings_app_folder">アプリのバックアップフォルダからインポート</string>
+    <string name="import_settings_downloads">ダウンロードからインポート</string>
+    <string name="import_settings_choose_file">バックアップファイルを選択</string>
+    <string name="import_settings_discard_pending">バックアップをインポートすると、未保存の変更が破棄されます。続行しますか?</string>
+    <string name="settings_imported">設定をインポートしました: %1$d 件適用、%2$d 件スキップ</string>
+    <string name="settings_import_failed">設定のインポートに失敗しました: %1$s</string>
+    <string name="no_settings_backups_title">バックアップが見つかりません</string>
+    <string name="no_settings_backups_message">アプリのバックアップフォルダに Headunit Revived のバックアップが見つかりません。先にバックアップをエクスポートしてからインポートしてください。</string>
+    <string name="no_settings_backups_downloads_message">ダウンロードに Headunit Revived のバックアップが見つかりません。先にバックアップをダウンロードへエクスポートしてからインポートしてください。</string>
+    <string name="no_file_picker_title">利用可能なファイルピッカーがありません</string>
+    <string name="no_file_picker_message">このデバイスには対応するファイルピッカーがありません。代わりにダウンロードまたはアプリのバックアップフォルダをご利用ください。</string>
+    <string name="storage_permission_denied_backup">ストレージへのアクセスが拒否されました。ダウンロードを使用できませんでした。</string>
+    <string name="reset_settings">デフォルトに戻す</string>
+    <string name="reset_settings_description">すべての設定、キャッシュデータ、自動接続設定をクリアします。工場出荷時の設定を適用するためにアプリが再起動します。</string>
+    <string name="reset_settings_confirm">すべての設定をデフォルト値にリセットしてもよろしいですか? アプリが再起動します。</string>
+    <string name="reset_settings_confirm_message">すべての設定がデフォルト値にリセットされます。バックアップとアプリファイルは削除されません。続行しますか?</string>
+    <string name="reset_settings_discard_pending">設定をリセットすると、未保存の変更が破棄されます。続行しますか?</string>
+    <string name="settings_reset">設定をデフォルトにリセットしました</string>
+    <string name="settings_reset_failed">設定のリセットに失敗しました: %1$s</string>
+    <string name="hotspot_ssid_hint">ホットスポット SSID</string>
+    <string name="hotspot_pass_hint">ホットスポットのパスワード</string>
+    <!-- Native USB Driver -->
+    <string name="use_libusb">ネイティブUSBドライバーを使用する</string>
+    <string name="use_libusb_description">通信にlibusbを使用します。Androidの標準USB APIを使用するには無効にしてください。</string>
+
+    <string name="software_video_decoder">ソフトウェアデコーダのソース</string>
+    <string name="software_video_decoder_bundled">内蔵FFmpeg</string>
+    <string name="software_video_decoder_device">デバイスのMediaCodec</string>
+
+    <string name="btn_show_qr">QRコードを表示</string>
+
+    <string name="self_mode_overlay_permission_description">単独モードをバックグラウンドから安定して起動できるようにするため、次の画面で「他のアプリの上に重ねて表示」の権限を有効にしてください。</string>
+</resources>

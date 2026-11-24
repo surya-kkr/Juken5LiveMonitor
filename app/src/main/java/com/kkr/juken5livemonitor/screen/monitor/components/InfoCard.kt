@@ -62,7 +62,7 @@ fun InfoCard(
             Column(
                 modifier = Modifier.padding(top = 1.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
+                verticalArrangement = Arrangement.spacedBy((-5).dp)
             ) {
 
                 if (icon != null) {
@@ -88,6 +88,7 @@ fun InfoCard(
                 text = value,
                 modifier = Modifier.weight(1f),
                 style = MaterialTheme.typography.bodyLarge,
+                fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White,
                 maxLines = 1

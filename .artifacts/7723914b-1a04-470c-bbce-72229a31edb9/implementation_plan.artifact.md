@@ -1,74 +1,54 @@
-# Android Auto "Self Mode" Integration Plan
+# Phase 3: High-Precision Touch Mapping & Viewport Calibration
 
-This plan outlines the integration of Android Auto Self Mode from the `headunit-revived` reference project into the Juken 5 Live Monitor app.
+This phase implements a mathematically precise touch transformation system for Android Auto, ensuring that user interactions are accurate across different themes and screen sizes.
 
-## User Review Required
+## 1. Core Logic & Transformation
 
-> [!IMPORTANT]
-> This is a complex integration involving native code (C++), low-level protocol handling (Protobuf/SSL), and background service management.
->
-> **Key constraints follow:**
-> - Android Auto only runs in **Classic** and **Modern** themes.
-> - Full resource release (Stop projection, release decoder, unbind service) when switching to **Racing** or **KKRXAG**.
-> - Optimized for **Unisoc T616** using `SurfaceView` and hardware acceleration.
+### [NEW] [ViewportCalculator.kt](file:///E:/Project%20App%20Juken/Juken%205%20Live%20Monitor%20App/Juken5LiveMonitor/app/src/main/java/com/kkr/juken5livemonitor/aap/utils/ViewportCalculator.kt)
+- Computes the active drawing area within the `SurfaceView`.
+- Calculates **ScaleX/Y** (Ratio of AA Viewport to physical pixels).
+- Calculates **OffsetX/Y** (Handling Letterbox/Pillarbox offsets).
+- Determines **Safe Touch Region**: Bounds where touch is valid for AA.
 
-## Proposed Changes
+### [NEW] [TouchTransformEngine.kt](file:///E:/Project%20App%20Juken/Juken%205%20Live%20Monitor%20App/Juken5LiveMonitor/app/src/main/java/com/kkr/juken5livemonitor/aap/utils/TouchTransformEngine.kt)
+- Transforms `MotionEvent` coordinates into AA logical coordinates (typically 800x480).
+- Uses a transformation matrix for linear and consistent mapping.
+- Efficiently handles multi-touch pointer data without new object allocations in the `MOVE` loop.
 
-### Build Configuration & Dependencies
+## 2. Protocol Integration
 
-#### [MODIFY] [build.gradle.kts (App)](file:///E:/Project%20App%20Juken/Juken%205%20Live%20Monitor%20App/Juken5LiveMonitor/app/build.gradle.kts)
-- Add Protobuf plugin and configuration.
-- Add CMake/NDK configuration for native components (FFMPEG decoder).
-- Add dependencies: `conscrypt-android`, `protobuf-java`, `androidx.media`, `glide`.
+### [NEW] [TouchEvent.kt](file:///E:/Project%20App%20Juken/Juken%205%20Live%20Monitor%20App/Juken5LiveMonitor/app/src/main/java/com/kkr/juken5livemonitor/aap/protocol/messages/TouchEvent.kt)
+- Port the `TouchEvent` protocol message from reference.
+- Packs transformed coordinates into the `InputReport` Protobuf message.
 
-#### [NEW] [Native Components](file:///E:/Project%20App%20Juken/Juken%205%20Live%20Monitor%20App/Juken5LiveMonitor/app/src/main/cpp)
-- Migrate `CMakeLists.txt`, `ffmpeg_hevc_decoder.cpp`, and necessary headers.
-- Bring over pre-compiled `.so` files into `jniLibs`.
+### [MODIFY] [AndroidAutoManager.kt](file:///E:/Project%20App%20Juken/Juken%205%20Live%20Monitor%20App/Juken5LiveMonitor/app/src/main/java/com/kkr/juken5livemonitor/aap/manager/AndroidAutoManager.kt)
+- Add `sendTouch(event: MotionEvent)`:
+    1. Check if `isRunning()`.
+    2. Pass event through `TouchTransformEngine`.
+    3. Forward to `AapTransport.send()`.
 
-### Core Android Auto Engine (Internal)
+## 3. UI Implementation
 
-#### [NEW] `com.kkr.juken5livemonitor.aap`
-- Migrate the AAP (Android Auto Protocol) implementation:
-    - **Protocol**: Protobuf message definitions.
-    - **Connection**: `CommManager` for socket handling.
-    - **Decoder**: `VideoDecoder` and `AudioDecoder` (extracted and adapted for Unisoc T616).
-    - **Service**: `AapService` adapted to run as a background engine rather than a standalone UI driver.
+### [MODIFY] [AndroidAutoPanel.kt](file:///E:/Project%20App%20Juken/Juken%205%20Live%20Monitor%20App/Juken5LiveMonitor/app/src/main/java/com/kkr/juken5livemonitor/screen/monitor/center/androidauto/AndroidAutoPanel.kt)
+- Implement `OnTouchListener` on the `SurfaceView`.
+- **Debug Overlay**: A Compose `Canvas` layer (Debug Build only) that draws:
+    - Crosshair at current touch point.
+    - Viewport boundaries (Green for active, Red for letterbox).
+    - Live coordinate labels (Android vs AA).
+    - Error metrics (X/Y delta).
 
-### Manager & Integration
+## 4. Performance & Compatibility
 
-#### [NEW] [AndroidAutoManager.kt](file:///E:/Project%20App%20Juken/Juken%205%20Live%20Monitor%20App/Juken5LiveMonitor/app/src/main/java/com/kkr/juken5livemonitor/aap/AndroidAutoManager.kt)
-- The primary controller for the AA lifecycle.
-- **`initialize()`**: Setup SSL providers and initial engine state.
-- **`start()`**: Start `WirelessServer` and trigger Self Mode intent.
-- **`stop()`**: Full teardown of projection, decoder, and connection.
-- **`resize(width, height, dpi)`**: Dynamically update viewport for theme transitions.
-
-#### [NEW] [AndroidAutoPanel.kt](file:///E:/Project%20App%20Juken/Juken%205%20Live%20Monitor%20App/Juken5LiveMonitor/app/src/main/java/com/kkr/juken5livemonitor/screen/monitor/center/androidauto/AndroidAutoPanel.kt)
-- A Compose component wrapping a `SurfaceView`.
-- Connects the `Surface` to the `VideoDecoder` via `AndroidAutoManager`.
-- Handles touch event mapping from the panel to the AA protocol.
-
-### Theme Integration
-
-#### [MODIFY] [MonitorViewModel.kt](file:///E:/Project%20App%20Juken/Juken%205%20Live%20Monitor%20App/Juken5LiveMonitor/app/src/main/java/com/kkr/juken5livemonitor/viewmodel/MonitorViewModel.kt)
-- Observe `selectedUi` and call `AndroidAutoManager.start()` or `stop()` accordingly.
-
-#### [MODIFY] [ModernCentralDashboard.kt](file:///E:/Project%20App%20Juken/Juken%205%20Live%20Monitor%20App/Juken5LiveMonitor/app/src/main/java/com/kkr/juken5livemonitor/screen/monitor/modern/ModernCentralDashboard.kt)
-- Replace placeholder with `AndroidAutoPanel`.
-
-#### [MODIFY] [MonitorLandscape.kt](file:///E:/Project%20App%20Juken/Juken%205%20Live%20Monitor%20App/Juken5LiveMonitor/app/src/main/java/com/kkr/juken5livemonitor/screen/monitor/MonitorLandscape.kt)
-- Integrate `AndroidAutoPanel` into the Classic theme section.
+- **Latency**: Logic optimized to complete in < 2ms (Total latency target < 16ms).
+- **GC Pressure**: Reuse `ArrayList` and `Triple` structures for touch pointer data.
+- **Android 10-15**: Uses standard `MotionEvent` APIs and `Window.OnFrameMetricsAvailableListener` for calibration timing.
 
 ## Verification Plan
 
-### Automated Tests
-- Build verification: Ensure CMake and Protobuf compile correctly.
+### Automated
+- Unit test for `TouchTransformEngine` validating corner-to-corner mapping.
 
-### Manual Verification
-- **Theme Switching**:
-    - Select **Modern**: Verify AA starts.
-    - Switch to **Classic**: Verify AA reloads/resizes without restart.
-    - Switch to **Racing**: Verify AA process and resources are completely cleared.
-- **Performance**:
-    - Monitor CPU/RAM usage on Unisoc T616 during AA session.
-    - Check for frame drops or ANRs during data-heavy ECU monitoring.
+### Manual
+- **100x Loop**: Rapidly switch themes (Classic ↔ Modern) while tapping the launcher button.
+- **Gesture Stress**: Persistent 30-minute interactive session with live ECU data.
+- **Debug Audit**: Confirm zero touch events are sent to AA when clicking in the letterbox area.

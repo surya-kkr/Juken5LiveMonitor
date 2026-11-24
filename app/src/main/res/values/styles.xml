@@ -1,0 +1,105 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@drawable/bg</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="colorPrimary">@color/brand_teal</item>
+        <item name="colorSecondary">@color/brand_teal</item>
+        <item name="colorAccent">@color/brand_teal</item>
+        <item name="android:colorAccent">@color/brand_teal</item>
+        <item name="android:dialogTheme">@style/DarkAlertDialog</item>
+        <item name="android:alertDialogTheme">@style/DarkAlertDialog</item>
+        <item name="materialAlertDialogTheme">@style/DarkAlertDialog</item>
+    </style>
+
+    <style name="AppTheme.Translucent" parent="android:Theme.Translucent.NoTitleBar" />
+
+    <style name="AppTheme.Fullscreen" parent="AppTheme">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="android:statusBarColor">@color/color_projection_blue</item>
+        <item name="android:navigationBarColor">@color/color_projection_blue</item>
+    </style>
+
+    <style name="SplashTheme.Fullscreen" parent="SplashTheme">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="DarkAlertDialog" parent="Theme.Material3.DayNight.Dialog.Alert">
+        <item name="colorPrimary">@color/brand_teal</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorSecondary">@color/brand_teal</item>
+        <item name="colorOnSecondary">@android:color/white</item>
+        <item name="android:colorAccent">@color/brand_teal</item>
+        <item name="android:background">?attr/colorSurface</item>
+        <item name="android:textColorPrimary">@color/adaptive_text_color</item>
+        <item name="buttonBarPositiveButtonStyle">@style/DialogButton.Positive</item>
+        <item name="buttonBarNegativeButtonStyle">@style/DialogButton.Negative</item>
+        <item name="shapeAppearance">@style/ShapeAppearanceOverlay.App.Dialog.Rounded</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.App.Dialog.Rounded</item>
+    </style>
+
+    <style name="DialogButton.Positive" parent="Widget.Material3.Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="backgroundTint">@color/brand_teal</item>
+        <item name="android:backgroundTint">@color/brand_teal</item>
+        <item name="android:background">@drawable/btn_primary_teal</item>
+    </style>
+
+    <style name="DialogButton.Negative" parent="Widget.Material3.Button.TextButton">
+        <item name="android:textColor">@color/brand_teal</item>
+        <item name="colorSecondary">@color/brand_teal</item>
+    </style>
+    <style name="DialogWindowTitle" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="SafetyDialogTheme" parent="Theme.Material3.DayNight.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="ThemeOverlay.ExtremeDark" parent="">
+        <item name="colorSurface">@color/extreme_dark_background</item>
+        <item name="android:colorBackground">@color/extreme_dark_background</item>
+        <item name="android:windowBackground">@color/extreme_dark_background</item>
+    </style>
+
+    <style name="ThemeOverlay.GradientBackground" parent="">
+        <item name="android:windowBackground">@drawable/bg_gradient</item>
+    </style>
+
+    <!-- Segmented Button Shapes -->
+    <style name="ShapeAppearance.App.Button.Left" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">24dp</item>
+        <item name="cornerSizeBottomLeft">24dp</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <style name="ShapeAppearance.App.Button.Middle" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">0dp</item>
+    </style>
+
+    <style name="ShapeAppearance.App.Button.Right" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeTopRight">24dp</item>
+        <item name="cornerSizeBottomRight">24dp</item>
+    </style>
+    <style name="ShapeAppearanceOverlay.App.Dialog.Rounded" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">24dp</item>
+    </style>
+</resources>

@@ -1,10 +1,11 @@
 package com.kkr.juken5livemonitor.ui.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Bluetooth
+import androidx.compose.material.icons.automirrored.rounded.HelpOutline
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -15,8 +16,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.kkr.juken5livemonitor.R
 
 @Composable
 fun GlassTopBar(
@@ -25,7 +30,8 @@ fun GlassTopBar(
     ecuName: String = "BRT Juken 5",
     subtitle: String? = null,
     inlineSubtitle: Boolean = false,
-    onSettingsClick: (() -> Unit)? = null
+    onSettingsClick: (() -> Unit)? = null,
+    onHelpClick: (() -> Unit)? = null
 
 ) {
 
@@ -40,33 +46,19 @@ fun GlassTopBar(
     ) {
 
         Box(
-
             modifier = Modifier
                 .size(60.dp)
-                .clip(CircleShape)
-                .background(
-                    if (connected)
-                        Color(0xFF00C853)
-                    else
-                        Color(0xFFE53935)
-                ),
-
+                .clip(CircleShape),
             contentAlignment = Alignment.Center
-
         ) {
-
-            Icon(
-
-                imageVector = Icons.Rounded.Bluetooth,
-
-                contentDescription = null,
-
-                tint = Color.White,
-
-                modifier = Modifier.size(32.dp)
-
+            Image(
+                painter = painterResource(id = R.drawable.app_logo),
+                contentDescription = "App Logo",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clip(CircleShape)
             )
-
         }
 
         Spacer(modifier = Modifier.width(18.dp))
@@ -79,7 +71,8 @@ fun GlassTopBar(
                 Row(verticalAlignment = Alignment.Bottom) {
                     Text(
                         text = ecuName,
-                        style = MaterialTheme.typography.headlineSmall,
+                        style = MaterialTheme.typography.titleLarge,
+                        fontSize = 19.sp,
                         color = Color.White,
                         fontWeight = FontWeight.Bold
                     )
@@ -94,15 +87,11 @@ fun GlassTopBar(
                 }
             } else {
                 Text(
-
                     text = ecuName,
-
-                    style = MaterialTheme.typography.headlineSmall,
-
+                    style = MaterialTheme.typography.titleLarge,
+                    fontSize = 19.sp,
                     color = Color.White,
-
                     fontWeight = FontWeight.Bold
-
                 )
 
                 subtitle?.let {
@@ -166,6 +155,17 @@ fun GlassTopBar(
                 Icon(
                     imageVector = Icons.Rounded.Settings,
                     contentDescription = "Settings",
+                    tint = Color.White,
+                    modifier = Modifier.size(32.dp)
+                )
+            }
+        }
+
+        if (onHelpClick != null) {
+            IconButton(onClick = onHelpClick) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Rounded.HelpOutline,
+                    contentDescription = "Help",
                     tint = Color.White,
                     modifier = Modifier.size(32.dp)
                 )

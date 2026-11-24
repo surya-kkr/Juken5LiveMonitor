@@ -1,0 +1,9 @@
+- `[x]` Revert `ProjectionManager.kt` to Smooth version logic
+- `[x]` Remove `AudioDecoder.kt` and `AudioTrackWrapper.kt`
+- `[x]` Modify `CenterPanel.kt` to remove `key(mode)`
+- `[x]` Remove incompatible unit tests (`StateTransitionTest.kt`, `TouchMappingTest.kt`)
+- `[x]` Verify build and log consistency
+- `[x]` Add diagnostic logging to `ProjectionManager.kt`
+- `[x]` Implement FIFO-based robust bulk reading to fix freeze/timeout
+- `[x]` Implement sequential Sender thread (`HandlerThread`) to fix SSL desync
+- `[x]` Final testing for long-running stability

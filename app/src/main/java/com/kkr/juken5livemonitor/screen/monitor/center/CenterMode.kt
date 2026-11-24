@@ -1,5 +1,7 @@
 package com.kkr.juken5livemonitor.screen.monitor.center
 
-sealed class CenterMode {
-    object AndroidAuto : CenterMode()
+enum class CenterMode {
+    MapLibre,
+    Music,
+    AndroidAuto
 }
