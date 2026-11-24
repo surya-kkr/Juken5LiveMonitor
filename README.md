@@ -120,7 +120,6 @@
 - [ ] Export CSV
 - [x] Graph View
 - [x] Dark Theme
-- [ ] ECU Configuration
 
 ---
 
